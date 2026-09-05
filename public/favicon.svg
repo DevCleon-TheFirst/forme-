@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Syne:wght@800&amp;display=swap');
+        text {
+            font-family: 'Syne', sans-serif;
+            font-weight: 800;
+            font-size: 80px;
+            fill: #000000;
+        }
+        @media (prefers-color-scheme: dark) {
+            text { fill: #ffffff; }
+        }
+    </style>
+    <text x="50" y="80" text-anchor="middle">F</text>
+</svg>

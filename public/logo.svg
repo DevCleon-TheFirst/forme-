@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 100">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Syne:wght@800&amp;display=swap');
+        text {
+            font-family: 'Syne', sans-serif;
+            font-weight: 800;
+            font-size: 60px;
+            letter-spacing: 12px;
+            fill: #000000;
+        }
+        @media (prefers-color-scheme: dark) {
+            text { fill: #ffffff; }
+        }
+    </style>
+    <text x="50%" y="65%" text-anchor="middle">FORME</text>
+</svg>
