@@ -1,0 +1,110 @@
+/* ── Luxury Motion & Micro-Animations System ── */
+
+:root {
+    --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+    --ease-luxury: cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* Keyframes */
+@keyframes fadeUp {
+    0% {
+        opacity: 0;
+        transform: translateY(28px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+@keyframes scaleIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.94);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes shimmer {
+    0% {
+        transform: translateX(-100%) rotate(25deg);
+    }
+    100% {
+        transform: translateX(200%) rotate(25deg);
+    }
+}
+
+@keyframes badgePulse {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(0.85);
+        opacity: 0.6;
+    }
+}
+
+/* Scroll-Reveal Utility Classes */
+.reveal-on-scroll {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.8s var(--ease-luxury), transform 0.8s var(--ease-luxury);
+    will-change: opacity, transform;
+}
+
+.reveal-visible {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+}
+
+/* Interactive Shimmer Button Effect */
+.shimmer-button {
+    position: relative;
+    overflow: hidden;
+}
+
+.shimmer-button::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        60deg,
+        transparent 30%,
+        rgba(255, 255, 255, 0.25) 50%,
+        transparent 70%
+    );
+    transform: translateX(-100%) rotate(25deg);
+    transition: transform 0.8s var(--ease-out-expo);
+    pointer-events: none;
+}
+
+.shimmer-button:hover::after {
+    animation: shimmer 1.2s var(--ease-out-expo);
+}
+
+/* Smooth Image Hover Zoom */
+.hover-zoom-img {
+    transition: transform 0.7s var(--ease-luxury), opacity 0.4s ease;
+    will-change: transform;
+}
+
+.hover-zoom-img:hover {
+    transform: scale(1.06);
+}
+
+/* Pulse Badge */
+.pulse-badge {
+    animation: badgePulse 2s ease-in-out infinite;
+}

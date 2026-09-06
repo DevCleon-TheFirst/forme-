@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Head, Link, router } from '@inertiajs/react';
+import ScrollReveal from '@/components/ScrollReveal';
 
 interface Product {
     id: number;
@@ -85,10 +86,10 @@ export default function Collection({ products, categories, currentCategory, filt
             </div>
 
             {/* Header */}
-            <div style={{ padding: '48px 24px 32px', textAlign: 'center' }}>
+            <ScrollReveal style={{ padding: '48px 24px 32px', textAlign: 'center' }}>
                 <h1 style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: '48px', fontWeight: 400, color: 'var(--forme-text, #1a1a1a)', marginBottom: '8px' }}>{pageTitle}</h1>
                 <p style={{ fontSize: '13px', color: 'var(--forme-dim, #888)' }}>{products.total} pieces</p>
-            </div>
+            </ScrollReveal>
 
             <style>{`
                 .collection-layout {

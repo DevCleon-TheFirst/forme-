@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Head, Link } from '@inertiajs/react';
 import axios from 'axios';
+import ScrollReveal from '@/components/ScrollReveal';
 
 interface Product {
     id: number; name: string; slug: string;
@@ -197,7 +198,7 @@ export default function Home({ featuredProducts, categories, newArrivals, heroSl
                         Forme creates beautifully considered pieces for the modern African — where contemporary silhouettes meet rich heritage.
                     </p>
                     <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', opacity: heroVisible ? 1 : 0, transition: 'all 0.8s ease 0.55s' }}>
-                        <Link href="/shop" style={{ background: C.accent, color: '#fff', padding: '14px 32px', textDecoration: 'none', fontSize: '11px', letterSpacing: '2.5px', textTransform: 'uppercase', fontWeight: 500, display: 'inline-block', transition: 'background .3s' }}
+                        <Link href="/shop" className="shimmer-button" style={{ background: C.accent, color: '#fff', padding: '14px 32px', textDecoration: 'none', fontSize: '11px', letterSpacing: '2.5px', textTransform: 'uppercase', fontWeight: 500, display: 'inline-block', transition: 'background .3s' }}
                             onMouseEnter={e => (e.currentTarget.style.background = '#B86878')}
                             onMouseLeave={e => (e.currentTarget.style.background = C.accent)}>
                             Shop Now
@@ -289,6 +290,7 @@ export default function Home({ featuredProducts, categories, newArrivals, heroSl
             {/* ── Categories ── */}
             {categories.length > 0 && (
                 <section style={{ padding: '96px 24px', maxWidth: '1400px', margin: '0 auto' }}>
+                    <ScrollReveal>
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '48px', flexWrap: 'wrap', gap: '16px' }}>
                         <div>
                             <p style={{ fontSize: '9px', letterSpacing: '4px', textTransform: 'uppercase', color: C.accent, marginBottom: '12px' }}>Browse</p>
@@ -302,6 +304,7 @@ export default function Home({ featuredProducts, categories, newArrivals, heroSl
                             View All
                         </Link>
                     </div>
+                    </ScrollReveal>
                     <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(240px, 1fr))', gap: '16px' }}>
                         {categories.map(cat => (
                             <Link key={cat.id} href={`/collections/${cat.slug}`} style={{ textDecoration: 'none', display: 'block', position: 'relative', aspectRatio: '4/5', overflow: 'hidden', background: C.surface }}>
@@ -331,6 +334,7 @@ export default function Home({ featuredProducts, categories, newArrivals, heroSl
             {featuredProducts.length > 0 && (
                 <section style={{ background: C.surface, padding: '96px 24px' }}>
                     <div style={{ maxWidth: '1400px', margin: '0 auto' }}>
+                        <ScrollReveal>
                         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '56px', flexWrap: 'wrap', gap: '16px' }}>
                             <div>
                                 <p style={{ fontSize: '9px', letterSpacing: '4px', textTransform: 'uppercase', color: C.accent, marginBottom: '12px' }}>Curated</p>
@@ -342,6 +346,7 @@ export default function Home({ featuredProducts, categories, newArrivals, heroSl
                                 View All
                             </Link>
                         </div>
+                        </ScrollReveal>
                         <div className="products-responsive-grid">
                             {featuredProducts.map(p => <ProductCard key={p.id} product={p} />)}
                         </div>
@@ -354,7 +359,7 @@ export default function Home({ featuredProducts, categories, newArrivals, heroSl
                 <div style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', pointerEvents: 'none' }}>
                     <span style={{ fontFamily: "'Syne', sans-serif", fontSize: 'clamp(120px,20vw,280px)', fontWeight: 800, color: 'var(--forme-text-border)', opacity: 0.3, userSelect: 'none', letterSpacing: '12px' }}>FORME</span>
                 </div>
-                <div style={{ position: 'relative', maxWidth: '720px', margin: '0 auto' }}>
+                <ScrollReveal style={{ position: 'relative', maxWidth: '720px', margin: '0 auto' }}>
                     <p style={{ fontSize: '9px', letterSpacing: '4px', textTransform: 'uppercase', color: C.accent, marginBottom: '24px' }}>Our Philosophy</p>
                     <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: 'clamp(28px,4vw,56px)', fontWeight: 400, color: C.text, lineHeight: 1.35, marginBottom: '32px' }}>
                         "Where every piece is<br /><em style={{ color: C.accent }}>shaped around you</em>"
@@ -362,17 +367,18 @@ export default function Home({ featuredProducts, categories, newArrivals, heroSl
                     <p style={{ fontSize: '14px', color: C.muted, lineHeight: '1.9', marginBottom: '40px' }}>
                         We believe great fashion starts with understanding the person who wears it. Each Forme piece is designed to move with you — celebrating your shape, your culture, your story.
                     </p>
-                    <Link href="/shop" style={{ border: `1px solid ${C.border}`, color: C.muted, padding: '16px 40px', textDecoration: 'none', fontSize: '11px', letterSpacing: '2.5px', textTransform: 'uppercase', display: 'inline-block', transition: 'all .3s' }}
+                    <Link href="/shop" className="shimmer-button" style={{ border: `1px solid ${C.border}`, color: C.muted, padding: '16px 40px', textDecoration: 'none', fontSize: '11px', letterSpacing: '2.5px', textTransform: 'uppercase', display: 'inline-block', transition: 'all .3s' }}
                         onMouseEnter={e => { e.currentTarget.style.borderColor = C.accent; e.currentTarget.style.color = C.accent; }}
                         onMouseLeave={e => { e.currentTarget.style.borderColor = C.border; e.currentTarget.style.color = C.muted; }}>
                         Explore the Collection
                     </Link>
-                </div>
+                </ScrollReveal>
             </section>
 
             {/* ── New Arrivals ── */}
             {newArrivals.length > 0 && (
                 <section style={{ padding: '96px 24px', maxWidth: '1400px', margin: '0 auto' }}>
+                    <ScrollReveal>
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '56px', flexWrap: 'wrap', gap: '16px' }}>
                         <div>
                             <p style={{ fontSize: '9px', letterSpacing: '4px', textTransform: 'uppercase', color: C.accent, marginBottom: '12px' }}>Just In</p>
@@ -384,6 +390,7 @@ export default function Home({ featuredProducts, categories, newArrivals, heroSl
                             See All
                         </Link>
                     </div>
+                    </ScrollReveal>
                     <div className="products-responsive-grid">
                         {newArrivals.map(p => <ProductCard key={p.id} product={p} />)}
                     </div>

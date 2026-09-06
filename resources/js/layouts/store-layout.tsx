@@ -248,7 +248,7 @@ export default function StoreLayout({ children }: StoreLayoutProps) {
             )}
 
             {/* Nav Drawer */}
-            <div style={{ position: 'fixed', top: 0, left: 0, height: '100%', width: 'min(340px, 85vw)', background: C.surface, zIndex: 200, transform: navOpen ? 'translateX(0)' : 'translateX(-100%)', transition: 'transform 0.4s cubic-bezier(0.4,0,0.2,1)', overflowY: 'auto', padding: '32px 24px', borderRight: `1px solid ${C.border}` }}>
+            <div style={{ position: 'fixed', top: 0, left: 0, height: '100%', width: 'min(340px, 85vw)', background: C.surface, zIndex: 200, transform: navOpen ? 'translateX(0)' : 'translateX(-100%)', transition: 'transform 0.5s var(--ease-out-expo, cubic-bezier(0.16, 1, 0.3, 1))', overflowY: 'auto', padding: '32px 24px', borderRight: `1px solid ${C.border}` }}>
                 <button onClick={() => setNavOpen(false)} style={{ position: 'absolute', top: '24px', right: '20px', background: 'none', border: 'none', cursor: 'pointer', fontSize: '20px', color: C.muted, minWidth: '40px', minHeight: '40px' }}>✕</button>
                 <Link href="/" onClick={() => setNavOpen(false)} style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '36px' }}>
                     <div style={{ width: '30px', height: '30px', borderRadius: '6px', background: C.accent, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
@@ -271,7 +271,7 @@ export default function StoreLayout({ children }: StoreLayoutProps) {
             </div>
 
             {/* Cart Drawer */}
-            <div style={{ position: 'fixed', top: 0, right: 0, height: '100%', width: 'min(400px, 100vw)', background: C.surface, zIndex: 200, transform: cartOpen ? 'translateX(0)' : 'translateX(100%)', transition: 'transform 0.4s cubic-bezier(0.4,0,0.2,1)', display: 'flex', flexDirection: 'column', borderLeft: `1px solid ${C.border}` }}>
+            <div style={{ position: 'fixed', top: 0, right: 0, height: '100%', width: 'min(400px, 100vw)', background: C.surface, zIndex: 200, transform: cartOpen ? 'translateX(0)' : 'translateX(100%)', transition: 'transform 0.5s var(--ease-out-expo, cubic-bezier(0.16, 1, 0.3, 1))', display: 'flex', flexDirection: 'column', borderLeft: `1px solid ${C.border}` }}>
                 <div style={{ padding: '20px 24px', borderBottom: `1px solid ${C.border}`, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                     <p style={{ fontFamily: "'Playfair Display', serif", fontSize: '20px', color: C.text }}>Your Bag ({cartCount})</p>
                     <button onClick={() => setCartOpen(false)} style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: '20px', color: C.muted }}>✕</button>
@@ -281,7 +281,7 @@ export default function StoreLayout({ children }: StoreLayoutProps) {
                         <div style={{ textAlign: 'center', paddingTop: '60px' }}>
                             <p style={{ fontFamily: "'Playfair Display', serif", fontSize: '22px', color: C.muted, marginBottom: '8px' }}>Your bag is empty</p>
                             <p style={{ fontSize: '12px', color: C.dim, marginBottom: '28px' }}>Discover something you'll love</p>
-                            <button onClick={() => { setCartOpen(false); router.visit('/shop'); }} style={{ background: C.accent, color: '#fff', border: 'none', padding: '14px 36px', fontSize: '11px', letterSpacing: '2px', textTransform: 'uppercase', cursor: 'pointer', fontWeight: 500 }}>
+                            <button onClick={() => { setCartOpen(false); router.visit('/shop'); }} className="shimmer-button" style={{ background: C.accent, color: '#fff', border: 'none', padding: '14px 36px', fontSize: '11px', letterSpacing: '2px', textTransform: 'uppercase', cursor: 'pointer', fontWeight: 500 }}>
                                 Shop Now
                             </button>
                         </div>
@@ -310,7 +310,7 @@ export default function StoreLayout({ children }: StoreLayoutProps) {
                             <span style={{ fontWeight: 600, color: C.text }}>₦{cartTotal.toLocaleString()}</span>
                         </div>
                         <p style={{ fontSize: '11px', color: C.muted, marginBottom: '20px' }}>Shipping calculated at checkout</p>
-                        <Link href="/checkout" onClick={() => setCartOpen(false)} style={{ display: 'block', background: C.accent, color: '#fff', textAlign: 'center', padding: '16px', textDecoration: 'none', fontSize: '11px', letterSpacing: '2px', textTransform: 'uppercase', marginBottom: '10px', fontWeight: 500 }}>
+                        <Link href="/checkout" onClick={() => setCartOpen(false)} className="shimmer-button" style={{ display: 'block', background: C.accent, color: '#fff', textAlign: 'center', padding: '16px', textDecoration: 'none', fontSize: '11px', letterSpacing: '2px', textTransform: 'uppercase', marginBottom: '10px', fontWeight: 500 }}>
                             Checkout
                         </Link>
                         <Link href="/cart" onClick={() => setCartOpen(false)} style={{ display: 'block', border: `1px solid ${C.border}`, color: C.muted, textAlign: 'center', padding: '14px', textDecoration: 'none', fontSize: '11px', letterSpacing: '2px', textTransform: 'uppercase', transition: 'border-color .2s, color .2s' }}>
