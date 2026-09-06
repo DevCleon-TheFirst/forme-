@@ -1,0 +1,66 @@
+name: Deploy to Production via FTP
+
+on:
+  push:
+    branches:
+      - main
+      - master
+
+jobs:
+  web-deploy:
+    name: Build & Deploy via FTP
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 🚚 Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: 🐘 Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          extensions: mbstring, dom, fileinfo, gd, ctype, json, openssl, pdo, bcmath, tokenizer, xml
+          coverage: none
+
+      - name: 📦 Install Composer Dependencies
+        run: |
+          composer install --no-dev --optimize-autoloader --no-progress --prefer-dist
+
+      - name: 🟢 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: 🛠️ Install NPM Dependencies & Build Assets
+        run: |
+          npm ci
+          npm run build
+
+      - name: 🚀 Deploy via FTP
+        uses: SamKirland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          port: ${{ secrets.FTP_PORT || 21 }}
+          server-dir: ${{ secrets.FTP_SERVER_DIR || '/' }}
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/.github/**
+            **/node_modules/**
+            **/tests/**
+            **/.env*
+            **/phpunit.xml
+            **/README.md
+            **/tsconfig.json
+            **/eslint.config.js
+            **/pint.json
+            **/phpstan.neon
+            **/storage/logs/*
+            **/storage/framework/cache/data/*
+            **/storage/framework/sessions/*
+            **/storage/framework/views/*
