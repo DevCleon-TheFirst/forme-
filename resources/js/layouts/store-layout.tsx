@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link, usePage, router } from '@inertiajs/react';
 import axios from 'axios';
+import AppLogoIcon from '@/components/app-logo-icon';
 
 interface CartItem {
     id: number;
@@ -142,15 +143,18 @@ export default function StoreLayout({ children }: StoreLayoutProps) {
             <header style={{ background: C.bg, borderBottom: `1px solid ${C.border}`, position: 'sticky', top: 0, zIndex: 100 }}>
                 <div className="header-container" style={{ maxWidth: '1400px', margin: '0 auto', padding: '0 24px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: '68px' }}>
                     {/* Left: Logo and Nav */}
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '32px' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
                         <button className="show-mob" onClick={() => setNavOpen(true)} style={{ background: 'none', border: 'none', cursor: 'pointer', display: 'flex', flexDirection: 'column', gap: '5px', padding: '8px', minWidth: '44px', minHeight: '44px', justifyContent: 'center', alignItems: 'center' }} aria-label="Menu">
                             <span style={{ display: 'block', width: '22px', height: '1.5px', background: C.text }} />
                             <span style={{ display: 'block', width: '15px', height: '1.5px', background: C.muted }} />
                             <span style={{ display: 'block', width: '22px', height: '1.5px', background: C.text }} />
                         </button>
                         
-                        <Link href="/" style={{ textDecoration: 'none' }}>
-                            <span className="brand-logo" style={{ fontFamily: "'Syne', sans-serif", fontSize: '24px', fontWeight: 800, letterSpacing: '8px', color: C.text, textTransform: 'uppercase' }}>FORME</span>
+                        <Link href="/" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '10px' }}>
+                            <div style={{ width: '32px', height: '32px', borderRadius: '6px', background: C.accent, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, boxShadow: '0 2px 8px rgba(139,26,42,0.25)' }}>
+                                <AppLogoIcon style={{ width: '18px', height: '18px', color: '#ffffff', fill: 'currentColor' }} />
+                            </div>
+                            <span className="brand-logo" style={{ fontFamily: "'Syne', sans-serif", fontSize: '22px', fontWeight: 800, letterSpacing: '4px', color: C.text, textTransform: 'uppercase' }}>FORME</span>
                         </Link>
 
                         <nav className="hide-mob" style={{ display: 'flex', gap: '28px' }}>
@@ -246,8 +250,11 @@ export default function StoreLayout({ children }: StoreLayoutProps) {
             {/* Nav Drawer */}
             <div style={{ position: 'fixed', top: 0, left: 0, height: '100%', width: 'min(340px, 85vw)', background: C.surface, zIndex: 200, transform: navOpen ? 'translateX(0)' : 'translateX(-100%)', transition: 'transform 0.4s cubic-bezier(0.4,0,0.2,1)', overflowY: 'auto', padding: '32px 24px', borderRight: `1px solid ${C.border}` }}>
                 <button onClick={() => setNavOpen(false)} style={{ position: 'absolute', top: '24px', right: '20px', background: 'none', border: 'none', cursor: 'pointer', fontSize: '20px', color: C.muted, minWidth: '40px', minHeight: '40px' }}>✕</button>
-                <Link href="/" onClick={() => setNavOpen(false)} style={{ textDecoration: 'none', display: 'block', marginBottom: '36px' }}>
-                    <span style={{ fontFamily: "'Syne', sans-serif", fontSize: '20px', fontWeight: 800, letterSpacing: '5px', color: C.text }}>FORME</span>
+                <Link href="/" onClick={() => setNavOpen(false)} style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '36px' }}>
+                    <div style={{ width: '30px', height: '30px', borderRadius: '6px', background: C.accent, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                        <AppLogoIcon style={{ width: '16px', height: '16px', color: '#ffffff', fill: 'currentColor' }} />
+                    </div>
+                    <span style={{ fontFamily: "'Syne', sans-serif", fontSize: '20px', fontWeight: 800, letterSpacing: '4px', color: C.text }}>FORME</span>
                 </Link>
                 {nav.map(item => (
                     <Link key={item.href} href={item.href} onClick={() => setNavOpen(false)}
