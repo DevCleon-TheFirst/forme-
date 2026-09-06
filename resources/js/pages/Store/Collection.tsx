@@ -90,9 +90,51 @@ export default function Collection({ products, categories, currentCategory, filt
                 <p style={{ fontSize: '13px', color: 'var(--forme-dim, #888)' }}>{products.total} pieces</p>
             </div>
 
-            <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '0 24px 80px', display: 'flex', gap: '48px' }}>
+            <style>{`
+                .collection-layout {
+                    max-width: 1400px;
+                    margin: 0 auto;
+                    padding: 0 24px 80px;
+                    display: flex;
+                    gap: 48px;
+                }
+                .collection-products-grid {
+                    display: grid;
+                    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+                    gap: 32px;
+                }
+                .mobile-filter-bar {
+                    display: none;
+                }
+                @media (max-width: 900px) {
+                    .collection-layout {
+                        padding: 0 16px 60px;
+                        flex-direction: column;
+                        gap: 20px;
+                    }
+                    .collection-sidebar {
+                        display: none;
+                    }
+                    .mobile-filter-bar {
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                        padding: 12px 16px;
+                        background: var(--forme-surface);
+                        border: 1px solid var(--forme-border);
+                        margin-bottom: 20px;
+                        border-radius: 4px;
+                    }
+                    .collection-products-grid {
+                        grid-template-columns: repeat(2, 1fr);
+                        gap: 14px;
+                    }
+                }
+            `}</style>
+
+            <div className="collection-layout">
                 {/* Sidebar filters */}
-                <aside style={{ width: '220px', flexShrink: 0 }}>
+                <aside className="collection-sidebar" style={{ width: '220px', flexShrink: 0 }}>
                     <div style={{ position: 'sticky', top: '100px' }}>
                         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '24px' }}>
                             <p style={{ fontSize: '11px', letterSpacing: '2px', textTransform: 'uppercase', color: 'var(--forme-text, #1a1a1a)', fontWeight: 600 }}>Filter</p>
@@ -166,7 +208,7 @@ export default function Collection({ products, categories, currentCategory, filt
                         </div>
                     ) : (
                         <>
-                            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(220px, 1fr))', gap: '32px' }}>
+                            <div className="collection-products-grid">
                                 {products.data.map(p => <ProductCard key={p.id} product={p} />)}
                             </div>
                             {/* Pagination */}

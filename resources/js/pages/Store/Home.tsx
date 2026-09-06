@@ -142,39 +142,76 @@ export default function Home({ featuredProducts, categories, newArrivals, heroSl
         <>
             <Head title="Forme — Made for You" />
 
+            <style>{`
+                .hero-section-grid {
+                    display: grid;
+                    grid-template-columns: 1fr 1fr;
+                    background: ${C.bg};
+                    min-height: calc(100vh - 105px);
+                }
+                .hero-slideshow-container {
+                    position: relative;
+                    overflow: hidden;
+                    background: ${C.bg};
+                    min-height: 480px;
+                }
+                .products-responsive-grid {
+                    display: grid;
+                    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+                    gap: 32px;
+                }
+                @media (max-width: 900px) {
+                    .hero-section-grid {
+                        grid-template-columns: 1fr;
+                        min-height: auto;
+                    }
+                    .hero-slideshow-container {
+                        min-height: 420px;
+                        height: 420px;
+                    }
+                    .quick-add-container {
+                        transform: translateY(0) !important;
+                    }
+                }
+                @media (max-width: 640px) {
+                    .products-responsive-grid {
+                        grid-template-columns: repeat(2, 1fr);
+                        gap: 14px;
+                    }
+                }
+            `}</style>
+
             {/* ── Hero ── */}
-            <section style={{ minHeight: 'calc(100vh - 105px)', display: 'grid', gridTemplateColumns: '1fr 1fr', background: C.bg }}>
+            <section className="hero-section-grid">
                 {/* Left: Text */}
-                <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: 'clamp(40px,6vw,100px) clamp(32px,5vw,80px)', position: 'relative' }}>
+                <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: 'clamp(32px,5vw,80px) clamp(20px,4vw,60px)', position: 'relative' }}>
                     <p style={{ fontSize: '10px', letterSpacing: '4px', textTransform: 'uppercase', color: C.accent, marginBottom: '24px', opacity: heroVisible ? 1 : 0, transform: heroVisible ? 'translateY(0)' : 'translateY(12px)', transition: 'all 0.7s ease 0.1s' }}>
                         Lagos · {new Date().getFullYear()} Collection
                     </p>
-                    <h1 style={{ fontFamily: "'Playfair Display', serif", fontSize: 'clamp(48px,6vw,96px)', fontWeight: 400, color: C.text, lineHeight: 1.05, marginBottom: '16px', opacity: heroVisible ? 1 : 0, transform: heroVisible ? 'translateY(0)' : 'translateY(20px)', transition: 'all 0.8s ease 0.2s' }}>
+                    <h1 style={{ fontFamily: "'Playfair Display', serif", fontSize: 'clamp(38px,5.5vw,96px)', fontWeight: 400, color: C.text, lineHeight: 1.05, marginBottom: '16px', opacity: heroVisible ? 1 : 0, transform: heroVisible ? 'translateY(0)' : 'translateY(20px)', transition: 'all 0.8s ease 0.2s' }}>
                         Dressed<br />
                         <em style={{ color: C.accent }}>to feel</em><br />
                         yourself.
                     </h1>
-                    <p style={{ fontSize: '14px', color: C.muted, lineHeight: '1.9', maxWidth: '380px', marginBottom: '40px', opacity: heroVisible ? 1 : 0, transition: 'all 0.8s ease 0.4s' }}>
+                    <p style={{ fontSize: '14px', color: C.muted, lineHeight: '1.9', maxWidth: '380px', marginBottom: '32px', opacity: heroVisible ? 1 : 0, transition: 'all 0.8s ease 0.4s' }}>
                         Forme creates beautifully considered pieces for the modern African — where contemporary silhouettes meet rich heritage.
                     </p>
-                    <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap', opacity: heroVisible ? 1 : 0, transition: 'all 0.8s ease 0.55s' }}>
-                        <Link href="/shop" style={{ background: C.accent, color: '#fff', padding: '16px 40px', textDecoration: 'none', fontSize: '11px', letterSpacing: '2.5px', textTransform: 'uppercase', fontWeight: 500, display: 'inline-block', transition: 'background .3s' }}
+                    <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', opacity: heroVisible ? 1 : 0, transition: 'all 0.8s ease 0.55s' }}>
+                        <Link href="/shop" style={{ background: C.accent, color: '#fff', padding: '14px 32px', textDecoration: 'none', fontSize: '11px', letterSpacing: '2.5px', textTransform: 'uppercase', fontWeight: 500, display: 'inline-block', transition: 'background .3s' }}
                             onMouseEnter={e => (e.currentTarget.style.background = '#B86878')}
                             onMouseLeave={e => (e.currentTarget.style.background = C.accent)}>
                             Shop Now
                         </Link>
-                        <Link href="/collections/new-arrivals" style={{ border: `1px solid ${C.border}`, color: C.muted, padding: '16px 32px', textDecoration: 'none', fontSize: '11px', letterSpacing: '2.5px', textTransform: 'uppercase', display: 'inline-block', transition: 'all .3s' }}
+                        <Link href="/collections/new-arrivals" style={{ border: `1px solid ${C.border}`, color: C.muted, padding: '14px 24px', textDecoration: 'none', fontSize: '11px', letterSpacing: '2.5px', textTransform: 'uppercase', display: 'inline-block', transition: 'all .3s' }}
                             onMouseEnter={e => { e.currentTarget.style.borderColor = C.accent; e.currentTarget.style.color = C.accent; }}
                             onMouseLeave={e => { e.currentTarget.style.borderColor = C.border; e.currentTarget.style.color = C.muted; }}>
                             New Arrivals
                         </Link>
                     </div>
-                    {/* Decorative line */}
-                    <div style={{ position: 'absolute', right: 0, top: '10%', bottom: '10%', width: '1px', background: `linear-gradient(to bottom, transparent, ${C.border}, transparent)` }} />
                 </div>
 
                 {/* Right: Hero Slideshow */}
-                <div style={{ position: 'relative', overflow: 'hidden', background: C.bg }}>
+                <div className="hero-slideshow-container">
 
                     {/* Slides */}
                     {heroSlides.map((slide, i) => (
@@ -305,7 +342,7 @@ export default function Home({ featuredProducts, categories, newArrivals, heroSl
                                 View All
                             </Link>
                         </div>
-                        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))', gap: '28px' }}>
+                        <div className="products-responsive-grid">
                             {featuredProducts.map(p => <ProductCard key={p.id} product={p} />)}
                         </div>
                     </div>
@@ -347,7 +384,7 @@ export default function Home({ featuredProducts, categories, newArrivals, heroSl
                             See All
                         </Link>
                     </div>
-                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))', gap: '28px' }}>
+                    <div className="products-responsive-grid">
                         {newArrivals.map(p => <ProductCard key={p.id} product={p} />)}
                     </div>
                 </section>

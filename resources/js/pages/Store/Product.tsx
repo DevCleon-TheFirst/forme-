@@ -116,6 +116,37 @@ export default function ProductPage({ product, related }: ProductPageProps) {
         <>
             <Head title={product.name} />
 
+            <style>{`
+                .product-main-grid {
+                    display: grid;
+                    grid-template-columns: 1fr 1fr;
+                    gap: 64px;
+                    align-items: start;
+                }
+                .product-images-wrap {
+                    display: flex;
+                    gap: 16px;
+                }
+                @media (max-width: 900px) {
+                    .product-main-grid {
+                        grid-template-columns: 1fr;
+                        gap: 32px;
+                    }
+                    .product-images-wrap {
+                        flex-direction: column-reverse;
+                    }
+                    .product-thumbnails-list {
+                        flex-direction: row !important;
+                        width: 100% !important;
+                        overflow-x: auto;
+                    }
+                    .product-thumbnails-list button {
+                        width: 64px !important;
+                        flex-shrink: 0;
+                    }
+                }
+            `}</style>
+
             {/* Breadcrumb */}
             <div style={{ padding: '16px 24px', borderBottom: '1px solid #EDE8DF' }}>
                 <div style={{ maxWidth: '1400px', margin: '0 auto', display: 'flex', gap: '8px', fontSize: '12px', color: '#888' }}>
@@ -127,14 +158,14 @@ export default function ProductPage({ product, related }: ProductPageProps) {
                 </div>
             </div>
 
-            <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '48px 24px 80px' }}>
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '64px', alignItems: 'start' }}>
+            <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '32px 20px 80px' }}>
+                <div className="product-main-grid">
 
                     {/* ── Images ────────────────────────────────────────── */}
-                    <div style={{ display: 'flex', gap: '16px' }}>
+                    <div className="product-images-wrap">
                         {/* Thumbnails */}
                         {product.images.length > 1 && (
-                            <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', width: '80px', flexShrink: 0 }}>
+                            <div className="product-thumbnails-list" style={{ display: 'flex', flexDirection: 'column', gap: '8px', width: '80px', flexShrink: 0 }}>
                                 {product.images.map((img, i) => (
                                     <button key={img.id} onClick={() => setSelectedImage(i)} style={{ padding: 0, border: `2px solid ${selectedImage === i ? '#1a1a1a' : 'transparent'}`, cursor: 'pointer', aspectRatio: '3/4', overflow: 'hidden', borderRadius: '2px' }}>
                                         <img src={img.url} alt={img.alt} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />

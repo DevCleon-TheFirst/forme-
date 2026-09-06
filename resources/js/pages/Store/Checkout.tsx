@@ -70,8 +70,8 @@ export default function Checkout({ cartItems, subtotal, shippingFee, total, user
 
     const inputStyle: React.CSSProperties = {
         width: '100%', padding: '12px 16px', border: '1px solid var(--forme-border)', background: 'var(--forme-bg)',
-        fontSize: '14px', color: 'var(--forme-text)', outline: 'none', borderRadius: '2px',
-        fontFamily: "'Inter', sans-serif",
+        fontSize: '16px', color: 'var(--forme-text)', outline: 'none', borderRadius: '2px',
+        fontFamily: "'DM Sans', sans-serif",
     };
 
     const labelStyle: React.CSSProperties = {

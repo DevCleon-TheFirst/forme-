@@ -41,9 +41,36 @@ export default function Cart({ cartItems: initialItems, total: initialTotal }: C
         <>
             <Head title="Your Bag" />
 
-            <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '48px 24px 80px' }}>
-                <h1 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: '40px', fontWeight: 400, color: '#1a1a1a', marginBottom: '8px' }}>Your Bag</h1>
-                <p style={{ fontSize: '13px', color: '#888', marginBottom: '48px' }}>{items.length} {items.length === 1 ? 'item' : 'items'}</p>
+            <style>{`
+                .cart-main-grid {
+                    display: grid;
+                    grid-template-columns: 1fr 360px;
+                    gap: 64px;
+                    align-items: start;
+                }
+                .cart-item-image {
+                    width: 120px;
+                    height: 160px;
+                    flex-shrink: 0;
+                    overflow: hidden;
+                    border-radius: 2px;
+                    background: #f5f0eb;
+                    display: block;
+                }
+                @media (max-width: 900px) {
+                    .cart-main-grid {
+                        grid-template-columns: 1fr;
+                        gap: 32px;
+                    }
+                    .cart-item-image {
+                        width: 84px !important;
+                        height: 112px !important;
+                    }
+                }
+            `}</style>
+
+            <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '32px 20px 80px' }}>
+                <h1 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 'clamp(28px, 4vw, 42px)', fontWeight: 400, color: '#1a1a1a', marginBottom: '32px' }}>Shopping Bag ({items.length})</h1>
 
                 {items.length === 0 ? (
                     <div style={{ textAlign: 'center', padding: '80px 0' }}>
@@ -54,14 +81,14 @@ export default function Cart({ cartItems: initialItems, total: initialTotal }: C
                         </Link>
                     </div>
                 ) : (
-                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 360px', gap: '64px', alignItems: 'start' }}>
+                    <div className="cart-main-grid">
 
                         {/* Cart items */}
                         <div>
                             {items.map((item) => (
-                                <div key={item.id} style={{ display: 'flex', gap: '24px', padding: '24px 0', borderBottom: '1px solid #EDE8DF' }}>
+                                <div key={item.id} style={{ display: 'flex', gap: '16px', padding: '20px 0', borderBottom: '1px solid #EDE8DF' }}>
                                     {/* Image */}
-                                    <Link href={`/products/${item.product.slug}`} style={{ width: '120px', height: '160px', flexShrink: 0, overflow: 'hidden', borderRadius: '2px', background: '#f5f0eb', display: 'block' }}>
+                                    <Link href={`/products/${item.product.slug}`} className="cart-item-image">
                                         {item.product.image
                                             ? <img src={item.product.image} alt={item.product.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                                             : <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=600&q=80" alt={item.product.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />

@@ -111,11 +111,15 @@ export default function StoreLayout({ children }: StoreLayoutProps) {
     const isActive = (href: string) => url.startsWith(href);
 
     return (
-        <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', fontFamily: "'DM Sans', sans-serif", backgroundColor: C.bg, color: C.text }}>
+        <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', fontFamily: "'DM Sans', sans-serif", backgroundColor: C.bg, color: C.text, overflowX: 'hidden' }}>
             <style>{`
                 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&family=Syne:wght@700;800&display=swap');
                 *{box-sizing:border-box;margin:0;padding:0;}
-                @media(max-width:768px){.hide-mob{display:none!important;}}
+                @media(max-width:768px){
+                    .hide-mob{display:none!important;}
+                    .header-container{padding:0 16px!important;}
+                    .brand-logo{font-size:20px!important;letter-spacing:4px!important;}
+                }
                 @media(min-width:769px){.show-mob{display:none!important;}}
                 ::selection{background:${C.accent};color:#fff;}
                 a{transition:color .2s;}
@@ -136,17 +140,17 @@ export default function StoreLayout({ children }: StoreLayoutProps) {
 
             {/* Header */}
             <header style={{ background: C.bg, borderBottom: `1px solid ${C.border}`, position: 'sticky', top: 0, zIndex: 100 }}>
-                <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '0 24px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: '68px' }}>
+                <div className="header-container" style={{ maxWidth: '1400px', margin: '0 auto', padding: '0 24px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: '68px' }}>
                     {/* Left: Logo and Nav */}
                     <div style={{ display: 'flex', alignItems: 'center', gap: '32px' }}>
-                        <button className="show-mob" onClick={() => setNavOpen(true)} style={{ background: 'none', border: 'none', cursor: 'pointer', display: 'flex', flexDirection: 'column', gap: '5px', padding: '4px' }} aria-label="Menu">
+                        <button className="show-mob" onClick={() => setNavOpen(true)} style={{ background: 'none', border: 'none', cursor: 'pointer', display: 'flex', flexDirection: 'column', gap: '5px', padding: '8px', minWidth: '44px', minHeight: '44px', justifyContent: 'center', alignItems: 'center' }} aria-label="Menu">
                             <span style={{ display: 'block', width: '22px', height: '1.5px', background: C.text }} />
                             <span style={{ display: 'block', width: '15px', height: '1.5px', background: C.muted }} />
                             <span style={{ display: 'block', width: '22px', height: '1.5px', background: C.text }} />
                         </button>
                         
                         <Link href="/" style={{ textDecoration: 'none' }}>
-                            <span style={{ fontFamily: "'Syne', sans-serif", fontSize: '24px', fontWeight: 800, letterSpacing: '8px', color: C.text, textTransform: 'uppercase' }}>FORME</span>
+                            <span className="brand-logo" style={{ fontFamily: "'Syne', sans-serif", fontSize: '24px', fontWeight: 800, letterSpacing: '8px', color: C.text, textTransform: 'uppercase' }}>FORME</span>
                         </Link>
 
                         <nav className="hide-mob" style={{ display: 'flex', gap: '28px' }}>
@@ -162,8 +166,8 @@ export default function StoreLayout({ children }: StoreLayoutProps) {
                     </div>
 
                     {/* Right icons */}
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
-                        <button onClick={toggleTheme} style={{ background: 'none', border: 'none', cursor: 'pointer', color: C.muted, transition: 'color .2s' }} aria-label="Toggle Theme"
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+                        <button onClick={toggleTheme} style={{ background: 'none', border: 'none', cursor: 'pointer', color: C.muted, minWidth: '40px', minHeight: '40px', display: 'flex', alignItems: 'center', justifyContent: 'center', transition: 'color .2s' }} aria-label="Toggle Theme"
                             onMouseEnter={e => (e.currentTarget.style.color = C.text)} onMouseLeave={e => (e.currentTarget.style.color = C.muted)}>
                             {theme === 'light' ? (
                                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
@@ -171,19 +175,19 @@ export default function StoreLayout({ children }: StoreLayoutProps) {
                                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
                             )}
                         </button>
-                        <button onClick={() => setSearchOpen(true)} style={{ background: 'none', border: 'none', cursor: 'pointer', color: C.muted, transition: 'color .2s' }} aria-label="Search"
+                        <button onClick={() => setSearchOpen(true)} style={{ background: 'none', border: 'none', cursor: 'pointer', color: C.muted, minWidth: '40px', minHeight: '40px', display: 'flex', alignItems: 'center', justifyContent: 'center', transition: 'color .2s' }} aria-label="Search"
                             onMouseEnter={e => (e.currentTarget.style.color = C.text)} onMouseLeave={e => (e.currentTarget.style.color = C.muted)}>
                             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
                         </button>
-                        <Link href="/account" style={{ color: C.muted, transition: 'color .2s' }} aria-label="Account"
+                        <Link href="/account" style={{ color: C.muted, minWidth: '40px', minHeight: '40px', display: 'flex', alignItems: 'center', justifyContent: 'center', transition: 'color .2s' }} aria-label="Account"
                             onMouseEnter={e => (e.currentTarget.style.color = C.text)} onMouseLeave={e => (e.currentTarget.style.color = C.muted)}>
                             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
                         </Link>
-                        <button onClick={openCart} style={{ background: 'none', border: 'none', cursor: 'pointer', color: C.muted, position: 'relative', transition: 'color .2s' }} aria-label="Cart"
+                        <button onClick={openCart} style={{ background: 'none', border: 'none', cursor: 'pointer', color: C.muted, position: 'relative', minWidth: '40px', minHeight: '40px', display: 'flex', alignItems: 'center', justifyContent: 'center', transition: 'color .2s' }} aria-label="Cart"
                             onMouseEnter={e => (e.currentTarget.style.color = C.text)} onMouseLeave={e => (e.currentTarget.style.color = C.muted)}>
                             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
                             {cartCount > 0 && (
-                                <span style={{ position: 'absolute', top: '-8px', right: '-8px', background: C.accent, color: '#fff', borderRadius: '50%', width: '17px', height: '17px', fontSize: '9px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 700 }}>{cartCount}</span>
+                                <span style={{ position: 'absolute', top: '2px', right: '2px', background: C.accent, color: '#fff', borderRadius: '50%', width: '17px', height: '17px', fontSize: '9px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 700 }}>{cartCount}</span>
                             )}
                         </button>
                     </div>
@@ -193,9 +197,9 @@ export default function StoreLayout({ children }: StoreLayoutProps) {
             <main style={{ flex: 1 }}>{children}</main>
 
             {/* Footer */}
-            <footer style={{ background: C.surface, borderTop: `1px solid ${C.border}`, padding: '64px 24px 32px' }}>
+            <footer style={{ background: C.surface, borderTop: `1px solid ${C.border}`, padding: '48px 20px 32px' }}>
                 <div style={{ maxWidth: '1400px', margin: '0 auto' }}>
-                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(190px, 1fr))', gap: '48px', marginBottom: '48px' }}>
+                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(160px, 1fr))', gap: '36px', marginBottom: '40px' }}>
                         <div>
                             <p style={{ fontFamily: "'Syne', sans-serif", fontSize: '20px', fontWeight: 800, letterSpacing: '5px', color: C.text, marginBottom: '16px' }}>FORME</p>
                             <p style={{ fontSize: '13px', color: C.muted, lineHeight: '1.9' }}>Beautifully crafted pieces for the modern African wardrobe. Made with love in Lagos, Nigeria.</p>
@@ -240,14 +244,14 @@ export default function StoreLayout({ children }: StoreLayoutProps) {
             )}
 
             {/* Nav Drawer */}
-            <div style={{ position: 'fixed', top: 0, left: 0, height: '100%', width: '340px', background: C.surface, zIndex: 200, transform: navOpen ? 'translateX(0)' : 'translateX(-100%)', transition: 'transform 0.4s cubic-bezier(0.4,0,0.2,1)', overflowY: 'auto', padding: '40px', borderRight: `1px solid ${C.border}` }}>
-                <button onClick={() => setNavOpen(false)} style={{ position: 'absolute', top: '24px', right: '24px', background: 'none', border: 'none', cursor: 'pointer', fontSize: '20px', color: C.muted }}>✕</button>
-                <Link href="/" onClick={() => setNavOpen(false)} style={{ textDecoration: 'none', display: 'block', marginBottom: '48px' }}>
+            <div style={{ position: 'fixed', top: 0, left: 0, height: '100%', width: 'min(340px, 85vw)', background: C.surface, zIndex: 200, transform: navOpen ? 'translateX(0)' : 'translateX(-100%)', transition: 'transform 0.4s cubic-bezier(0.4,0,0.2,1)', overflowY: 'auto', padding: '32px 24px', borderRight: `1px solid ${C.border}` }}>
+                <button onClick={() => setNavOpen(false)} style={{ position: 'absolute', top: '24px', right: '20px', background: 'none', border: 'none', cursor: 'pointer', fontSize: '20px', color: C.muted, minWidth: '40px', minHeight: '40px' }}>✕</button>
+                <Link href="/" onClick={() => setNavOpen(false)} style={{ textDecoration: 'none', display: 'block', marginBottom: '36px' }}>
                     <span style={{ fontFamily: "'Syne', sans-serif", fontSize: '20px', fontWeight: 800, letterSpacing: '5px', color: C.text }}>FORME</span>
                 </Link>
                 {nav.map(item => (
                     <Link key={item.href} href={item.href} onClick={() => setNavOpen(false)}
-                        style={{ display: 'block', fontFamily: "'Playfair Display', serif", fontSize: '26px', color: C.text, textDecoration: 'none', marginBottom: '20px', opacity: 0.85, transition: 'color .2s, opacity .2s' }}
+                        style={{ display: 'block', fontFamily: "'Playfair Display', serif", fontSize: '24px', color: C.text, textDecoration: 'none', marginBottom: '18px', opacity: 0.85, transition: 'color .2s, opacity .2s' }}
                         onMouseEnter={e => { e.currentTarget.style.color = C.accent; e.currentTarget.style.opacity = '1'; }}
                         onMouseLeave={e => { e.currentTarget.style.color = C.text; e.currentTarget.style.opacity = '0.85'; }}>
                         {item.label}
@@ -260,8 +264,8 @@ export default function StoreLayout({ children }: StoreLayoutProps) {
             </div>
 
             {/* Cart Drawer */}
-            <div style={{ position: 'fixed', top: 0, right: 0, height: '100%', width: '400px', maxWidth: '100vw', background: C.surface, zIndex: 200, transform: cartOpen ? 'translateX(0)' : 'translateX(100%)', transition: 'transform 0.4s cubic-bezier(0.4,0,0.2,1)', display: 'flex', flexDirection: 'column', borderLeft: `1px solid ${C.border}` }}>
-                <div style={{ padding: '24px 28px', borderBottom: `1px solid ${C.border}`, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+            <div style={{ position: 'fixed', top: 0, right: 0, height: '100%', width: 'min(400px, 100vw)', background: C.surface, zIndex: 200, transform: cartOpen ? 'translateX(0)' : 'translateX(100%)', transition: 'transform 0.4s cubic-bezier(0.4,0,0.2,1)', display: 'flex', flexDirection: 'column', borderLeft: `1px solid ${C.border}` }}>
+                <div style={{ padding: '20px 24px', borderBottom: `1px solid ${C.border}`, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                     <p style={{ fontFamily: "'Playfair Display', serif", fontSize: '20px', color: C.text }}>Your Bag ({cartCount})</p>
                     <button onClick={() => setCartOpen(false)} style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: '20px', color: C.muted }}>✕</button>
                 </div>
