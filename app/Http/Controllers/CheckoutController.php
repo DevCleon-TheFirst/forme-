@@ -80,34 +80,46 @@ class CheckoutController extends Controller
         $shippingFee = $subtotal >= 50000 ? 0 : 3000;
         $total       = $subtotal + $shippingFee;
 
-        // Create order in pending state
-        $order = Order::create([
-            'order_number'     => Order::generateOrderNumber(),
-            'user_id'          => auth()->id(),
-            'status'           => 'pending',
-            'payment_status'   => 'unpaid',
-            'subtotal'         => $subtotal,
-            'shipping_fee'     => $shippingFee,
-            'total_amount'     => $total,
-            'customer_name'    => $request->customer_name,
-            'customer_email'   => $request->customer_email,
-            'customer_phone'   => $request->customer_phone,
-            'shipping_address' => $request->shipping_address,
-            'shipping_city'    => $request->shipping_city,
-            'shipping_state'   => $request->shipping_state,
-            'notes'            => $request->notes,
-        ]);
+        // ── Idempotency Check: Reuse recent unpaid pending order if duplicate request ──
+        $existingOrder = Order::where('customer_email', $request->customer_email)
+            ->where('payment_status', 'unpaid')
+            ->where('total_amount', $total)
+            ->where('created_at', '>=', now()->subMinutes(3))
+            ->latest()
+            ->first();
 
-        foreach ($items as $item) {
-            OrderItem::create([
-                'order_id'            => $order->id,
-                'product_variant_id'  => $item->variant->id,
-                'product_name'        => $item->variant->product->name,
-                'variant_description' => $item->variant->description,
-                'quantity'            => $item->quantity,
-                'unit_price'          => $item->variant->final_price,
-                'total_price'         => $item->variant->final_price * $item->quantity,
+        if ($existingOrder) {
+            $order = $existingOrder;
+        } else {
+            // Create order in pending state
+            $order = Order::create([
+                'order_number'     => Order::generateOrderNumber(),
+                'user_id'          => auth()->id(),
+                'status'           => 'pending',
+                'payment_status'   => 'unpaid',
+                'subtotal'         => $subtotal,
+                'shipping_fee'     => $shippingFee,
+                'total_amount'     => $total,
+                'customer_name'    => $request->customer_name,
+                'customer_email'   => $request->customer_email,
+                'customer_phone'   => $request->customer_phone,
+                'shipping_address' => $request->shipping_address,
+                'shipping_city'    => $request->shipping_city,
+                'shipping_state'   => $request->shipping_state,
+                'notes'            => $request->notes,
             ]);
+
+            foreach ($items as $item) {
+                OrderItem::create([
+                    'order_id'            => $order->id,
+                    'product_variant_id'  => $item->variant->id,
+                    'product_name'        => $item->variant->product->name,
+                    'variant_description' => $item->variant->description,
+                    'quantity'            => $item->quantity,
+                    'unit_price'          => $item->variant->final_price,
+                    'total_price'         => $item->variant->final_price * $item->quantity,
+                ]);
+            }
         }
 
         $paystackKey = config('services.paystack.secret_key');

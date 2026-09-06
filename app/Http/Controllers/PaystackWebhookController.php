@@ -32,46 +32,48 @@ class PaystackWebhookController extends Controller
             return response('OK', 200);
         }
 
-        $order = Order::where('order_number', $reference)->first();
+        return \Illuminate\Support\Facades\DB::transaction(function () use ($reference, $data) {
+            $order = Order::where('order_number', $reference)->lockForUpdate()->first();
 
-        if (! $order || $order->payment_status === 'paid') {
-            return response('OK', 200);
-        }
-
-        $order->update([
-            'payment_status'    => 'paid',
-            'payment_reference' => $data['reference'],
-            'status'            => 'processing',
-        ]);
-
-        // Save card token if available
-        if ($order->user_id && ! empty($data['authorization']['reusable']) && $data['authorization']['reusable']) {
-            $user = \App\Models\User::find($order->user_id);
-            if ($user && ! $user->paystack_auth_code) {
-                $user->update([
-                    'paystack_auth_code' => $data['authorization']['authorization_code'],
-                    'card_last_four'     => $data['authorization']['last4'],
-                    'card_brand'         => $data['authorization']['brand'],
-                ]);
+            if (! $order || $order->payment_status === 'paid') {
+                return response('OK', 200);
             }
-        }
 
-        // Deduct stock
-        foreach ($order->items as $item) {
-            optional($item->variant)->decrement('stock_quantity', $item->quantity);
-        }
+            $order->update([
+                'payment_status'    => 'paid',
+                'payment_reference' => $data['reference'],
+                'status'            => 'processing',
+            ]);
 
-        // Clear cart
-        $cart = $order->user_id
-            ? \App\Models\Cart::where('user_id', $order->user_id)->first()
-            : null;
+            // Save card token if available
+            if ($order->user_id && ! empty($data['authorization']['reusable']) && $data['authorization']['reusable']) {
+                $user = \App\Models\User::find($order->user_id);
+                if ($user && ! $user->paystack_auth_code) {
+                    $user->update([
+                        'paystack_auth_code' => $data['authorization']['authorization_code'],
+                        'card_last_four'     => $data['authorization']['last4'],
+                        'card_brand'         => $data['authorization']['brand'],
+                    ]);
+                }
+            }
 
-        if ($cart) {
-            $cart->items()->delete();
-        }
+            // Deduct stock
+            foreach ($order->items as $item) {
+                optional($item->variant)->decrement('stock_quantity', $item->quantity);
+            }
 
-        Log::info("Paystack webhook: order {$order->order_number} marked paid via webhook");
+            // Clear cart
+            $cart = $order->user_id
+                ? \App\Models\Cart::where('user_id', $order->user_id)->first()
+                : null;
 
-        return response('OK', 200);
+            if ($cart) {
+                $cart->items()->delete();
+            }
+
+            Log::info("Paystack webhook: order {$order->order_number} marked paid via webhook");
+
+            return response('OK', 200);
+        });
     }
 }

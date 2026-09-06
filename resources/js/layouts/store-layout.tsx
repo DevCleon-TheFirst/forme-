@@ -151,9 +151,6 @@ export default function StoreLayout({ children }: StoreLayoutProps) {
                         </button>
                         
                         <Link href="/" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '10px' }}>
-                            <div style={{ width: '32px', height: '32px', borderRadius: '6px', background: C.accent, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, boxShadow: '0 2px 8px rgba(139,26,42,0.25)' }}>
-                                <AppLogoIcon style={{ width: '18px', height: '18px', color: '#ffffff', fill: 'currentColor' }} />
-                            </div>
                             <span className="brand-logo" style={{ fontFamily: "'Syne', sans-serif", fontSize: '22px', fontWeight: 800, letterSpacing: '4px', color: C.text, textTransform: 'uppercase' }}>FORME</span>
                         </Link>
 
