@@ -127,7 +127,7 @@ export default function StoreLayout({ children }: StoreLayoutProps) {
             `}</style>
 
             {/* Announcement */}
-            {storeSetting?.announcement_is_active && storeSetting?.announcement_text && (
+            {!!storeSetting?.announcement_is_active && storeSetting?.announcement_text && (
                 <div style={{ background: C.accent, color: '#fff', fontSize: '11px', letterSpacing: '2px', textAlign: 'center', padding: '9px 16px', fontWeight: 500, textTransform: 'uppercase' }}>
                     {storeSetting.announcement_link ? (
                         <Link href={storeSetting.announcement_link} style={{ color: '#fff', textDecoration: 'none' }}>
