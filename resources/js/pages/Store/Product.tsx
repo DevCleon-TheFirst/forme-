@@ -43,6 +43,16 @@ interface ProductPageProps {
     related: RelatedProduct[];
 }
 
+const C = {
+    bg:      'var(--forme-bg)',
+    surface: 'var(--forme-surface)',
+    border:  'var(--forme-border)',
+    accent:  'var(--forme-accent)',
+    text:    'var(--forme-text)',
+    muted:   'var(--forme-muted)',
+    dim:     'var(--forme-dim)',
+};
+
 export default function ProductPage({ product, related }: ProductPageProps) {
     const [selectedImage, setSelectedImage] = useState(0);
     const [selectedColor, setSelectedColor] = useState<string | null>(null);
@@ -148,13 +158,13 @@ export default function ProductPage({ product, related }: ProductPageProps) {
             `}</style>
 
             {/* Breadcrumb */}
-            <div style={{ padding: '16px 24px', borderBottom: '1px solid #EDE8DF' }}>
-                <div style={{ maxWidth: '1400px', margin: '0 auto', display: 'flex', gap: '8px', fontSize: '12px', color: '#888' }}>
-                    <Link href="/" style={{ color: '#888', textDecoration: 'none' }}>Home</Link>
+            <div style={{ padding: '16px 24px', borderBottom: `1px solid ${C.border}` }}>
+                <div style={{ maxWidth: '1400px', margin: '0 auto', display: 'flex', gap: '8px', fontSize: '12px', color: C.muted }}>
+                    <Link href="/" style={{ color: C.muted, textDecoration: 'none' }}>Home</Link>
                     <span>/</span>
-                    <Link href="/shop" style={{ color: '#888', textDecoration: 'none' }}>Shop</Link>
+                    <Link href="/shop" style={{ color: C.muted, textDecoration: 'none' }}>Shop</Link>
                     <span>/</span>
-                    <span style={{ color: '#1a1a1a' }}>{product.name}</span>
+                    <span style={{ color: C.text }}>{product.name}</span>
                 </div>
             </div>
 
@@ -167,7 +177,7 @@ export default function ProductPage({ product, related }: ProductPageProps) {
                         {product.images.length > 1 && (
                             <div className="product-thumbnails-list" style={{ display: 'flex', flexDirection: 'column', gap: '8px', width: '80px', flexShrink: 0 }}>
                                 {product.images.map((img, i) => (
-                                    <button key={img.id} onClick={() => setSelectedImage(i)} style={{ padding: 0, border: `2px solid ${selectedImage === i ? '#1a1a1a' : 'transparent'}`, cursor: 'pointer', aspectRatio: '3/4', overflow: 'hidden', borderRadius: '2px' }}>
+                                    <button key={img.id} onClick={() => setSelectedImage(i)} style={{ padding: 0, border: `2px solid ${selectedImage === i ? C.text : 'transparent'}`, cursor: 'pointer', aspectRatio: '3/4', overflow: 'hidden', borderRadius: '2px' }}>
                                         <img src={img.url} alt={img.alt} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                                     </button>
                                 ))}
@@ -179,7 +189,7 @@ export default function ProductPage({ product, related }: ProductPageProps) {
                             onMouseEnter={() => setZoomed(true)}
                             onMouseLeave={() => setZoomed(false)}
                             onMouseMove={handleMouseMove}
-                            style={{ flex: 1, aspectRatio: '3/4', background: '#f5f0eb', borderRadius: '2px', overflow: 'hidden', position: 'relative', cursor: zoomed ? 'crosshair' : 'default' }}
+                            style={{ flex: 1, aspectRatio: '3/4', background: C.surface, borderRadius: '2px', overflow: 'hidden', position: 'relative', cursor: zoomed ? 'crosshair' : 'default' }}
                         >
                             {product.images[selectedImage] ? (
                                 <img
@@ -211,7 +221,7 @@ export default function ProductPage({ product, related }: ProductPageProps) {
                             )}
                             {/* Zoom hint */}
                             {!zoomed && product.images[selectedImage] && (
-                                <div style={{ position: 'absolute', bottom: '12px', right: '12px', background: 'rgba(255,255,255,0.85)', backdropFilter: 'blur(4px)', padding: '6px 12px', fontSize: '11px', letterSpacing: '1px', color: '#555', borderRadius: '2px', pointerEvents: 'none' }}>
+                                <div style={{ position: 'absolute', bottom: '12px', right: '12px', background: C.surface, backdropFilter: 'blur(4px)', padding: '6px 12px', fontSize: '11px', letterSpacing: '1px', color: C.muted, borderRadius: '2px', pointerEvents: 'none', border: `1px solid ${C.border}` }}>
                                     Hover to zoom
                                 </div>
                             )}
@@ -220,28 +230,28 @@ export default function ProductPage({ product, related }: ProductPageProps) {
 
                     {/* ── Product info ──────────────────────────────────── */}
                     <div style={{ position: 'sticky', top: '100px' }}>
-                        {product.category && <p style={{ fontSize: '10px', letterSpacing: '3px', textTransform: 'uppercase', color: '#8B1A2A', marginBottom: '12px' }}>{product.category}</p>}
-                        <h1 style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: '36px', fontWeight: 400, color: '#1a1a1a', marginBottom: '16px', lineHeight: 1.2 }}>{product.name}</h1>
+                        {product.category && <p style={{ fontSize: '10px', letterSpacing: '3px', textTransform: 'uppercase', color: C.accent, marginBottom: '12px' }}>{product.category}</p>}
+                        <h1 style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: '36px', fontWeight: 400, color: C.text, marginBottom: '16px', lineHeight: 1.2 }}>{product.name}</h1>
 
                         {/* Price */}
                         <div style={{ display: 'flex', gap: '12px', alignItems: 'center', marginBottom: '24px' }}>
-                            <span style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: '24px', color: '#1a1a1a' }}>₦{Number(currentPrice).toLocaleString()}</span>
-                            {product.compare_price && <span style={{ fontSize: '18px', color: '#aaa', textDecoration: 'line-through' }}>₦{Number(product.compare_price).toLocaleString()}</span>}
+                            <span style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: '24px', color: C.text }}>₦{Number(currentPrice).toLocaleString()}</span>
+                            {product.compare_price && <span style={{ fontSize: '18px', color: C.muted, textDecoration: 'line-through' }}>₦{Number(product.compare_price).toLocaleString()}</span>}
                         </div>
 
-                        {product.short_description && <p style={{ fontSize: '14px', color: '#555', lineHeight: '1.8', marginBottom: '32px' }}>{product.short_description}</p>}
+                        {product.short_description && <p style={{ fontSize: '14px', color: C.muted, lineHeight: '1.8', marginBottom: '32px' }}>{product.short_description}</p>}
 
                         {/* Color picker */}
                         {colors.length > 0 && (
                             <div style={{ marginBottom: '24px' }}>
-                                <p style={{ fontSize: '11px', letterSpacing: '2px', textTransform: 'uppercase', color: '#888', marginBottom: '12px' }}>
-                                    Color {selectedColor && <span style={{ color: '#1a1a1a', fontWeight: 600 }}>— {selectedColor}</span>}
+                                <p style={{ fontSize: '11px', letterSpacing: '2px', textTransform: 'uppercase', color: C.muted, marginBottom: '12px' }}>
+                                    Color {selectedColor && <span style={{ color: C.text, fontWeight: 600 }}>— {selectedColor}</span>}
                                 </p>
                                 <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
                                     {product.variants.filter((v, i, arr) => arr.findIndex(x => x.color === v.color) === i).map(v => (
                                         <button key={v.id} onClick={() => setSelectedColor(v.color)}
                                             title={v.color ?? ''}
-                                            style={{ width: '36px', height: '36px', borderRadius: '50%', background: v.color_hex || '#ccc', border: `3px solid ${selectedColor === v.color ? '#1a1a1a' : 'transparent'}`, outline: `1px solid ${v.color_hex ? 'rgba(0,0,0,0.15)' : '#ccc'}`, cursor: 'pointer', transition: 'border-color 0.2s', boxSizing: 'border-box' }} />
+                                            style={{ width: '36px', height: '36px', borderRadius: '50%', background: v.color_hex || C.dim, border: `3px solid ${selectedColor === v.color ? C.text : 'transparent'}`, outline: `1px solid ${v.color_hex ? 'rgba(0,0,0,0.15)' : C.dim}`, cursor: 'pointer', transition: 'border-color 0.2s', boxSizing: 'border-box' }} />
                                     ))}
                                 </div>
                             </div>
@@ -251,15 +261,15 @@ export default function ProductPage({ product, related }: ProductPageProps) {
                         {sizes.length > 0 && (
                             <div style={{ marginBottom: '24px' }}>
                                 <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '12px' }}>
-                                    <p style={{ fontSize: '11px', letterSpacing: '2px', textTransform: 'uppercase', color: '#888' }}>Size</p>
-                                    <button style={{ fontSize: '12px', color: '#8B1A2A', background: 'none', border: 'none', cursor: 'pointer', textDecoration: 'underline' }}>Size Guide</button>
+                                    <p style={{ fontSize: '11px', letterSpacing: '2px', textTransform: 'uppercase', color: C.muted }}>Size</p>
+                                    <button style={{ fontSize: '12px', color: C.accent, background: 'none', border: 'none', cursor: 'pointer', textDecoration: 'underline' }}>Size Guide</button>
                                 </div>
                                 <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
                                     {sizes.map(size => {
                                         const available = isSizeAvailable(size);
                                         return (
                                             <button key={size} onClick={() => available && setSelectedSize(size)} disabled={!available}
-                                                style={{ padding: '10px 16px', border: `1px solid ${selectedSize === size ? '#1a1a1a' : '#ddd'}`, background: selectedSize === size ? '#1a1a1a' : 'transparent', color: !available ? '#ccc' : selectedSize === size ? '#fff' : '#1a1a1a', fontSize: '12px', letterSpacing: '1px', cursor: available ? 'pointer' : 'not-allowed', transition: 'all 0.2s', textDecoration: !available ? 'line-through' : 'none' }}>
+                                                style={{ padding: '10px 16px', border: `1px solid ${selectedSize === size ? C.text : C.border}`, background: selectedSize === size ? C.text : 'transparent', color: !available ? C.dim : selectedSize === size ? C.bg : C.text, fontSize: '12px', letterSpacing: '1px', cursor: available ? 'pointer' : 'not-allowed', transition: 'all 0.2s', textDecoration: !available ? 'line-through' : 'none' }}>
                                                 {size}
                                             </button>
                                         );
@@ -270,31 +280,31 @@ export default function ProductPage({ product, related }: ProductPageProps) {
 
                         {/* Quantity */}
                         <div style={{ marginBottom: '24px' }}>
-                            <p style={{ fontSize: '11px', letterSpacing: '2px', textTransform: 'uppercase', color: '#888', marginBottom: '12px' }}>Quantity</p>
-                            <div style={{ display: 'flex', alignItems: 'center', border: '1px solid #ddd', width: 'fit-content' }}>
-                                <button onClick={() => setQuantity(q => Math.max(1, q - 1))} style={{ width: '40px', height: '40px', background: 'none', border: 'none', cursor: 'pointer', fontSize: '18px', color: '#1a1a1a' }}>−</button>
-                                <span style={{ width: '40px', textAlign: 'center', fontSize: '14px' }}>{quantity}</span>
-                                <button onClick={() => setQuantity(q => q + 1)} style={{ width: '40px', height: '40px', background: 'none', border: 'none', cursor: 'pointer', fontSize: '18px', color: '#1a1a1a' }}>+</button>
+                            <p style={{ fontSize: '11px', letterSpacing: '2px', textTransform: 'uppercase', color: C.muted, marginBottom: '12px' }}>Quantity</p>
+                            <div style={{ display: 'flex', alignItems: 'center', border: `1px solid ${C.border}`, width: 'fit-content' }}>
+                                <button onClick={() => setQuantity(q => Math.max(1, q - 1))} style={{ width: '40px', height: '40px', background: 'none', border: 'none', cursor: 'pointer', fontSize: '18px', color: C.text }}>−</button>
+                                <span style={{ width: '40px', textAlign: 'center', fontSize: '14px', color: C.text }}>{quantity}</span>
+                                <button onClick={() => setQuantity(q => q + 1)} style={{ width: '40px', height: '40px', background: 'none', border: 'none', cursor: 'pointer', fontSize: '18px', color: C.text }}>+</button>
                             </div>
                         </div>
 
                         {/* Errors / success */}
-                        {error && <p style={{ color: '#8B1A2A', fontSize: '13px', marginBottom: '12px' }}>{error}</p>}
+                        {error && <p style={{ color: C.accent, fontSize: '13px', marginBottom: '12px' }}>{error}</p>}
                         {addedMsg && <p style={{ color: '#2d7a4f', fontSize: '13px', marginBottom: '12px' }}>✓ {addedMsg}</p>}
 
                         {/* Add to bag button */}
                         <div style={{ display: 'flex', gap: '12px', marginBottom: '24px' }}>
-                            <button onClick={handleAddToCart} disabled={adding} style={{ flex: 1, background: '#1a1a1a', color: '#fff', border: 'none', padding: '18px', fontSize: '12px', letterSpacing: '2px', textTransform: 'uppercase', cursor: 'pointer', transition: 'background 0.2s', opacity: adding ? 0.7 : 1 }}>
+                            <button onClick={handleAddToCart} disabled={adding} style={{ flex: 1, background: C.text, color: C.bg, border: 'none', padding: '18px', fontSize: '12px', letterSpacing: '2px', textTransform: 'uppercase', cursor: 'pointer', transition: 'opacity 0.2s', opacity: adding ? 0.7 : 1 }}>
                                 {adding ? 'Adding...' : selectedVariant?.stock === 0 ? 'Out of Stock' : 'Add to Bag'}
                             </button>
                         </div>
 
                         {/* Trust badges */}
-                        <div style={{ display: 'flex', gap: '24px', padding: '16px 0', borderTop: '1px solid #EDE8DF', borderBottom: '1px solid #EDE8DF', marginBottom: '32px', flexWrap: 'wrap' }}>
+                        <div style={{ display: 'flex', gap: '24px', padding: '16px 0', borderTop: `1px solid ${C.border}`, borderBottom: `1px solid ${C.border}`, marginBottom: '32px', flexWrap: 'wrap' }}>
                             {['Free shipping over ₦50k', 'Easy returns', 'Secure checkout'].map(t => (
                                 <div key={t} style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                                    <span style={{ fontSize: '14px', color: '#8B1A2A' }}>✓</span>
-                                    <span style={{ fontSize: '12px', color: '#666' }}>{t}</span>
+                                    <span style={{ fontSize: '14px', color: C.accent }}>✓</span>
+                                    <span style={{ fontSize: '12px', color: C.muted }}>{t}</span>
                                 </div>
                             ))}
                         </div>
@@ -305,14 +315,14 @@ export default function ProductPage({ product, related }: ProductPageProps) {
                             { key: 'care' as const, label: 'Care Instructions', content: product.care_instructions || 'Handle with care. Dry clean recommended.' },
                             { key: 'shipping' as const, label: 'Shipping & Returns', content: 'Standard delivery within Lagos: 2-3 business days. Nigeria-wide: 3-7 business days. Free returns within 14 days.' },
                         ].map(tab => (
-                            <div key={tab.key} style={{ borderBottom: '1px solid #EDE8DF' }}>
+                            <div key={tab.key} style={{ borderBottom: `1px solid ${C.border}` }}>
                                 <button onClick={() => setActiveTab(activeTab === tab.key ? 'details' : tab.key)} style={{ width: '100%', display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '16px 0', background: 'none', border: 'none', cursor: 'pointer' }}>
-                                    <span style={{ fontSize: '12px', letterSpacing: '1.5px', textTransform: 'uppercase', color: '#1a1a1a', fontWeight: 500 }}>{tab.label}</span>
-                                    <span style={{ fontSize: '18px', color: '#888', transition: 'transform 0.2s', transform: activeTab === tab.key ? 'rotate(45deg)' : 'rotate(0)' }}>+</span>
+                                    <span style={{ fontSize: '12px', letterSpacing: '1.5px', textTransform: 'uppercase', color: C.text, fontWeight: 500 }}>{tab.label}</span>
+                                    <span style={{ fontSize: '18px', color: C.muted, transition: 'transform 0.2s', transform: activeTab === tab.key ? 'rotate(45deg)' : 'rotate(0)' }}>+</span>
                                 </button>
                                 {activeTab === tab.key && (
                                     <div style={{ paddingBottom: '16px' }}>
-                                        <p style={{ fontSize: '13px', color: '#555', lineHeight: '1.8' }} dangerouslySetInnerHTML={{ __html: tab.content }} />
+                                        <p style={{ fontSize: '13px', color: C.muted, lineHeight: '1.8' }} dangerouslySetInnerHTML={{ __html: tab.content }} />
                                     </div>
                                 )}
                             </div>
@@ -324,18 +334,18 @@ export default function ProductPage({ product, related }: ProductPageProps) {
                 {related.length > 0 && (
                     <div style={{ marginTop: '96px' }}>
                         <div style={{ textAlign: 'center', marginBottom: '48px' }}>
-                            <p style={{ fontSize: '10px', letterSpacing: '4px', textTransform: 'uppercase', color: '#8B1A2A', marginBottom: '12px' }}>You May Also Like</p>
-                            <h2 style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: '36px', fontWeight: 400 }}>Complete the Look</h2>
+                            <p style={{ fontSize: '10px', letterSpacing: '4px', textTransform: 'uppercase', color: C.accent, marginBottom: '12px' }}>You May Also Like</p>
+                            <h2 style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: '36px', fontWeight: 400, color: C.text }}>Complete the Look</h2>
                         </div>
                         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(220px, 1fr))', gap: '32px' }}>
                             {related.map(p => (
                                 <Link key={p.id} href={`/products/${p.slug}`} style={{ textDecoration: 'none' }}>
                                     <div>
-                                        <div style={{ aspectRatio: '3/4', background: '#f5f0eb', overflow: 'hidden', borderRadius: '2px', marginBottom: '12px' }}>
+                                        <div style={{ aspectRatio: '3/4', background: C.surface, overflow: 'hidden', borderRadius: '2px', marginBottom: '12px' }}>
                                             {p.primary_image ? <img src={p.primary_image} alt={p.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} /> : <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=600&q=80" alt={p.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />}
                                         </div>
-                                        <p style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: '16px', color: '#1a1a1a', marginBottom: '6px' }}>{p.name}</p>
-                                        <p style={{ fontSize: '14px', color: '#555' }}>₦{Number(p.base_price).toLocaleString()}</p>
+                                        <p style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: '16px', color: C.text, marginBottom: '6px' }}>{p.name}</p>
+                                        <p style={{ fontSize: '14px', color: C.muted }}>₦{Number(p.base_price).toLocaleString()}</p>
                                     </div>
                                 </Link>
                             ))}
