@@ -119,11 +119,15 @@ export default function StoreLayout({ children }: StoreLayoutProps) {
                 @media(max-width:768px){
                     .hide-mob{display:none!important;}
                     .header-container{padding:0 16px!important;}
-                    .brand-logo{font-size:20px!important;letter-spacing:4px!important;}
                 }
                 @media(min-width:769px){.show-mob{display:none!important;}}
                 ::selection{background:${C.accent};color:#fff;}
                 a{transition:color .2s;}
+                .dark .brand-logo-img { filter: brightness(0) invert(1); }
+                @keyframes pulse-logo {
+                    0%, 100% { opacity: 1; transform: scale(1); }
+                    50% { opacity: 0.5; transform: scale(0.9); }
+                }
             `}</style>
 
             {/* Announcement */}
@@ -141,7 +145,7 @@ export default function StoreLayout({ children }: StoreLayoutProps) {
 
             {/* Header */}
             <header style={{ background: C.bg, borderBottom: `1px solid ${C.border}`, position: 'sticky', top: 0, zIndex: 100 }}>
-                <div className="header-container" style={{ maxWidth: '1400px', margin: '0 auto', padding: '0 24px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: '68px' }}>
+                <div className="header-container" style={{ maxWidth: '1400px', margin: '0 auto', padding: '0 24px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: '84px' }}>
                     {/* Left: Logo and Nav */}
                     <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
                         <button className="show-mob" onClick={() => setNavOpen(true)} style={{ background: 'none', border: 'none', cursor: 'pointer', display: 'flex', flexDirection: 'column', gap: '5px', padding: '8px', minWidth: '44px', minHeight: '44px', justifyContent: 'center', alignItems: 'center' }} aria-label="Menu">
@@ -149,9 +153,8 @@ export default function StoreLayout({ children }: StoreLayoutProps) {
                             <span style={{ display: 'block', width: '15px', height: '1.5px', background: C.muted }} />
                             <span style={{ display: 'block', width: '22px', height: '1.5px', background: C.text }} />
                         </button>
-                        
                         <Link href="/" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '10px' }}>
-                            <span className="brand-logo" style={{ fontFamily: "'Syne', sans-serif", fontSize: '22px', fontWeight: 800, letterSpacing: '4px', color: C.text, textTransform: 'uppercase' }}>FORME</span>
+                            <img src="/images/forme-logo.png" className="brand-logo-img" alt="Formé" style={{ height: '60px', width: 'auto', objectFit: 'contain' }} />
                         </Link>
 
                         <nav className="hide-mob" style={{ display: 'flex', gap: '28px' }}>
@@ -202,7 +205,7 @@ export default function StoreLayout({ children }: StoreLayoutProps) {
                 <div style={{ maxWidth: '1400px', margin: '0 auto' }}>
                     <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(160px, 1fr))', gap: '36px', marginBottom: '40px' }}>
                         <div>
-                            <p style={{ fontFamily: "'Syne', sans-serif", fontSize: '20px', fontWeight: 800, letterSpacing: '5px', color: C.text, marginBottom: '16px' }}>FORME</p>
+                            <img src="/images/forme-logo.png" className="brand-logo-img" alt="Formé" style={{ height: '80px', width: 'auto', objectFit: 'contain', marginBottom: '16px', display: 'block' }} />
                             <p style={{ fontSize: '13px', color: C.muted, lineHeight: '1.9' }}>Beautifully crafted pieces for the modern African wardrobe. Made with love in Lagos, Nigeria.</p>
                         </div>
                         <div>
@@ -248,8 +251,7 @@ export default function StoreLayout({ children }: StoreLayoutProps) {
             <div style={{ position: 'fixed', top: 0, left: 0, height: '100%', width: 'min(340px, 85vw)', background: C.surface, zIndex: 200, transform: navOpen ? 'translateX(0)' : 'translateX(-100%)', transition: 'transform 0.5s var(--ease-out-expo, cubic-bezier(0.16, 1, 0.3, 1))', overflowY: 'auto', padding: '32px 24px', borderRight: `1px solid ${C.border}` }}>
                 <button onClick={() => setNavOpen(false)} style={{ position: 'absolute', top: '24px', right: '20px', background: 'none', border: 'none', cursor: 'pointer', fontSize: '20px', color: C.muted, minWidth: '40px', minHeight: '40px' }}>✕</button>
                 <Link href="/" onClick={() => setNavOpen(false)} style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '36px' }}>
-
-                    <span style={{ fontFamily: "'Syne', sans-serif", fontSize: '20px', fontWeight: 800, letterSpacing: '4px', color: C.text }}>FORME</span>
+                    <img src="/images/forme-logo.png" className="brand-logo-img" alt="Formé" style={{ height: '60px', width: 'auto', objectFit: 'contain' }} />
                 </Link>
                 {nav.map(item => (
                     <Link key={item.href} href={item.href} onClick={() => setNavOpen(false)}

@@ -28,10 +28,19 @@ class AdminPanelProvider extends PanelProvider
             ->path('admin')
             ->login()
             ->colors([
-                'primary' => Color::Rose,
+                'primary' => \Filament\Support\Colors\Color::hex('#6B7230'),
             ])
-            ->brandLogo(asset('logo.svg'))
-            ->brandLogoHeight('1.5rem')
+            ->brandLogo(asset('images/forme-logo.png'))
+            ->brandLogoHeight('4rem')
+            ->renderHook(
+                \Filament\View\PanelsRenderHook::HEAD_END,
+                fn (): string => \Illuminate\Support\Facades\Blade::render('
+                    <style>
+                        .fi-logo img { object-fit: contain; }
+                        html.dark .fi-logo img { filter: brightness(0) invert(1); }
+                    </style>
+                '),
+            )
             ->favicon(asset('favicon.svg'))
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\\Filament\\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\\Filament\\Pages')

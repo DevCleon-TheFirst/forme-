@@ -71,8 +71,8 @@
     --card-foreground: oklch(0.145 0 0);
     --popover: oklch(1 0 0);
     --popover-foreground: oklch(0.145 0 0);
-    --primary: oklch(0.205 0 0);
-    --primary-foreground: oklch(0.985 0 0);
+    --primary: #6B7230;
+    --primary-foreground: #FFFFFF;
     --secondary: oklch(0.97 0 0);
     --secondary-foreground: oklch(0.205 0 0);
     --muted: oklch(0.97 0 0);
@@ -92,8 +92,8 @@
     --radius: 0.625rem;
     --sidebar: oklch(0.985 0 0);
     --sidebar-foreground: oklch(0.145 0 0);
-    --sidebar-primary: oklch(0.205 0 0);
-    --sidebar-primary-foreground: oklch(0.985 0 0);
+    --sidebar-primary: #6B7230;
+    --sidebar-primary-foreground: #FFFFFF;
     --sidebar-accent: oklch(0.97 0 0);
     --sidebar-accent-foreground: oklch(0.205 0 0);
     --sidebar-border: oklch(0.922 0 0);
@@ -103,8 +103,8 @@
     --forme-bg: #FDFAF6;
     --forme-surface: #FFFFFF;
     --forme-border: #E8E1D9;
-    --forme-accent: #A65A6C;
-    --forme-accent-light: #C87D8F;
+    --forme-accent: #6B7230;
+    --forme-accent-light: #8B943F;
     --forme-text: #000000;
     --forme-muted: #444444;
     --forme-dim: #D0C8C0;
@@ -127,8 +127,8 @@
     --card-foreground: oklch(0.985 0 0);
     --popover: oklch(0.145 0 0);
     --popover-foreground: oklch(0.985 0 0);
-    --primary: oklch(0.985 0 0);
-    --primary-foreground: oklch(0.205 0 0);
+    --primary: #8B943F;
+    --primary-foreground: #000000;
     --secondary: oklch(0.269 0 0);
     --secondary-foreground: oklch(0.985 0 0);
     --muted: oklch(0.269 0 0);
@@ -147,8 +147,8 @@
     --chart-5: oklch(0.645 0.246 16.439);
     --sidebar: oklch(0.205 0 0);
     --sidebar-foreground: oklch(0.985 0 0);
-    --sidebar-primary: oklch(0.985 0 0);
-    --sidebar-primary-foreground: oklch(0.985 0 0);
+    --sidebar-primary: #8B943F;
+    --sidebar-primary-foreground: #000000;
     --sidebar-accent: oklch(0.269 0 0);
     --sidebar-accent-foreground: oklch(0.985 0 0);
     --sidebar-border: oklch(0.269 0 0);
@@ -158,8 +158,8 @@
     --forme-bg: #0A0A0B;
     --forme-surface: #141416;
     --forme-border: #232326;
-    --forme-accent: #C87D8F;
-    --forme-accent-light: #E4A8B5;
+    --forme-accent: #8B943F;
+    --forme-accent-light: #ABB650;
     --forme-text: #FFFFFF;
     --forme-muted: #A0A0A0;
     --forme-dim: #48484E;

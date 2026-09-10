@@ -49,23 +49,20 @@
                 visibility: hidden;
             }
 
-            .forme-logo-text {
-                font-family: 'Syne', sans-serif; 
-                font-size: 24px; 
-                font-weight: 800; 
-                letter-spacing: 8px; 
-                text-transform: uppercase;
-                color: #111;
+            .brand-logo-img-preloader {
+                height: 80px;
+                width: auto;
+                object-fit: contain;
                 animation: pulse 1.5s ease-in-out infinite;
             }
 
-            html.dark .forme-logo-text {
-                color: #fff;
+            html.dark .brand-logo-img-preloader {
+                filter: brightness(0) invert(1);
             }
 
             @keyframes pulse {
                 0%, 100% { opacity: 1; transform: scale(1); }
-                50% { opacity: 0.6; transform: scale(0.98); }
+                50% { opacity: 0.6; transform: scale(0.95); }
             }
         </style>
 
@@ -83,7 +80,7 @@
     </head>
     <body class="font-sans antialiased">
         <div id="forme-preloader">
-            <span class="forme-logo-text">FORME</span>
+            <img src="/images/forme-logo.png" class="brand-logo-img-preloader" alt="Formé Loading..." />
         </div>
         <script>
             window.addEventListener('load', function() {
