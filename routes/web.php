@@ -13,6 +13,7 @@ Route::middleware('throttle:storefront')->group(function () {
     Route::get('/shop', [StoreController::class, 'collection'])->name('shop');
     Route::get('/collections/{slug}', [StoreController::class, 'collection'])->name('collection');
     Route::get('/products/{slug}', [StoreController::class, 'product'])->name('product');
+    Route::get('/policy', [StoreController::class, 'policy'])->name('policy');
 });
 
 // ─── Cart (Rate Limited: Max 30 req/min) ──────────────────────────────────────

@@ -206,37 +206,52 @@ export default function StoreLayout({ children }: StoreLayoutProps) {
                     <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(160px, 1fr))', gap: '36px', marginBottom: '40px' }}>
                         <div>
                             <img src="/images/forme-logo.png" className="brand-logo-img" alt="Formé" style={{ height: '80px', width: 'auto', objectFit: 'contain', marginBottom: '16px', display: 'block' }} />
-                            <p style={{ fontSize: '13px', color: C.muted, lineHeight: '1.9' }}>Beautifully crafted pieces for the modern African wardrobe. Made with love in Lagos, Nigeria.</p>
+                            <p style={{ fontSize: '14px', color: C.text, fontWeight: 500, lineHeight: '1.8' }}>Beautifully crafted pieces for the modern African wardrobe. Made with love in Lagos, Nigeria.</p>
                         </div>
                         <div>
-                            <p style={{ fontSize: '10px', letterSpacing: '2.5px', textTransform: 'uppercase', marginBottom: '20px', color: C.accent, fontWeight: 600 }}>Shop</p>
+                            <p style={{ fontSize: '11px', letterSpacing: '2.5px', textTransform: 'uppercase', marginBottom: '20px', color: C.accentLight || C.accent, fontWeight: 700 }}>Shop</p>
                             {nav.map(n => (
-                                <Link key={n.href} href={n.href} style={{ display: 'block', fontSize: '13px', color: C.muted, textDecoration: 'none', marginBottom: '12px' }}
-                                    onMouseEnter={e => (e.currentTarget.style.color = C.text)} onMouseLeave={e => (e.currentTarget.style.color = C.muted)}>{n.label}</Link>
+                                <Link key={n.href} href={n.href} style={{ display: 'block', fontSize: '14px', color: C.text, fontWeight: 500, textDecoration: 'none', marginBottom: '12px', transition: 'opacity .2s' }}
+                                    onMouseEnter={e => (e.currentTarget.style.opacity = '0.7')} onMouseLeave={e => (e.currentTarget.style.opacity = '1')}>{n.label}</Link>
                             ))}
                         </div>
                         <div>
-                            <p style={{ fontSize: '10px', letterSpacing: '2.5px', textTransform: 'uppercase', marginBottom: '20px', color: C.accent, fontWeight: 600 }}>Help</p>
-                            {['FAQ', 'Shipping & Returns', 'Size Guide', 'Contact Us'].map(t => (
-                                <p key={t} style={{ fontSize: '13px', color: C.muted, marginBottom: '12px', cursor: 'pointer' }}>{t}</p>
+                            <p style={{ fontSize: '11px', letterSpacing: '2.5px', textTransform: 'uppercase', marginBottom: '20px', color: C.accentLight || C.accent, fontWeight: 700 }}>Help</p>
+                            {['FAQ', 'Size Guide', 'Contact Us'].map(t => (
+                                <p key={t} style={{ fontSize: '14px', color: C.text, fontWeight: 500, marginBottom: '12px', cursor: 'pointer', transition: 'opacity .2s' }}
+                                    onMouseEnter={e => (e.currentTarget.style.opacity = '0.7')} onMouseLeave={e => (e.currentTarget.style.opacity = '1')}>{t}</p>
                             ))}
+                            <Link
+                                href="/policy"
+                                style={{ display: 'block', fontSize: '14px', color: C.text, fontWeight: 500, textDecoration: 'none', marginBottom: '12px', transition: 'opacity .2s' }}
+                                onMouseEnter={e => (e.currentTarget.style.opacity = '0.7')}
+                                onMouseLeave={e => (e.currentTarget.style.opacity = '1')}
+                            >Shipping &amp; Returns</Link>
                         </div>
                         <div>
-                            <p style={{ fontSize: '10px', letterSpacing: '2.5px', textTransform: 'uppercase', marginBottom: '20px', color: C.accent, fontWeight: 600 }}>Connect</p>
-                            <p style={{ fontSize: '13px', color: C.muted, marginBottom: '8px' }}>hello@forme.ng</p>
-                            <p style={{ fontSize: '13px', color: C.muted, marginBottom: '16px' }}>WhatsApp: +234 708 470 4785</p>
+                            <p style={{ fontSize: '11px', letterSpacing: '2.5px', textTransform: 'uppercase', marginBottom: '20px', color: C.accentLight || C.accent, fontWeight: 700 }}>Connect</p>
+                            <p style={{ fontSize: '14px', color: C.text, fontWeight: 500, marginBottom: '8px' }}>hello@forme.ng</p>
+                            <p style={{ fontSize: '14px', color: C.text, fontWeight: 500, marginBottom: '16px' }}>WhatsApp: +234 708 470 4785</p>
                             <div style={{ display: 'flex', gap: '10px' }}>
                                 {['IG', 'TT', 'FB'].map(s => (
-                                    <div key={s} style={{ width: '36px', height: '36px', borderRadius: '50%', border: `1px solid ${C.border}`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '10px', color: C.muted, cursor: 'pointer', transition: 'all .2s' }}
-                                        onMouseEnter={e => { e.currentTarget.style.borderColor = C.accent; e.currentTarget.style.color = C.accent; }}
-                                        onMouseLeave={e => { e.currentTarget.style.borderColor = C.border; e.currentTarget.style.color = C.muted; }}>{s}</div>
+                                    <div key={s} style={{ width: '38px', height: '38px', borderRadius: '50%', border: `1px solid ${C.accent}`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '11px', fontWeight: 600, color: C.text, cursor: 'pointer', transition: 'all .2s' }}
+                                        onMouseEnter={e => { e.currentTarget.style.borderColor = C.text; e.currentTarget.style.background = C.accent; }}
+                                        onMouseLeave={e => { e.currentTarget.style.borderColor = C.accent; e.currentTarget.style.background = 'transparent'; }}>{s}</div>
                                 ))}
                             </div>
                         </div>
                     </div>
                     <div style={{ borderTop: `1px solid ${C.border}`, paddingTop: '24px', display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap', gap: '12px' }}>
-                        <p style={{ fontSize: '12px', color: C.dim }}>© {new Date().getFullYear()} Forme. All rights reserved.</p>
-                        <p style={{ fontSize: '12px', color: C.dim }}>Privacy Policy · Terms of Service</p>
+                        <p style={{ fontSize: '13px', color: C.text, fontWeight: 500 }}>© {new Date().getFullYear()} Forme. All rights reserved.</p>
+                        <div style={{ display: 'flex', gap: '12px' }}>
+                            <Link href="/policy" style={{ fontSize: '13px', color: C.text, fontWeight: 500, textDecoration: 'none', transition: 'opacity .2s' }}
+                                onMouseEnter={e => (e.currentTarget.style.opacity = '0.7')}
+                                onMouseLeave={e => (e.currentTarget.style.opacity = '1')}>Privacy Policy</Link>
+                            <span style={{ fontSize: '13px', color: C.text }}>·</span>
+                            <Link href="/policy" style={{ fontSize: '13px', color: C.text, fontWeight: 500, textDecoration: 'none', transition: 'opacity .2s' }}
+                                onMouseEnter={e => (e.currentTarget.style.opacity = '0.7')}
+                                onMouseLeave={e => (e.currentTarget.style.opacity = '1')}>Terms of Service</Link>
+                        </div>
                     </div>
                 </div>
             </footer>
