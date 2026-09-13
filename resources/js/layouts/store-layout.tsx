@@ -68,6 +68,7 @@ export default function StoreLayout({ children }: StoreLayoutProps) {
         { label: 'Dresses', href: '/collections/dresses' },
         { label: 'Sets', href: '/collections/sets' },
         { label: 'Accessories', href: '/collections/accessories' },
+        { label: 'About Us', href: '/about' },
     ];
 
     useEffect(() => { fetchCartCount(); }, [url]);
@@ -206,7 +207,7 @@ export default function StoreLayout({ children }: StoreLayoutProps) {
                     <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(160px, 1fr))', gap: '36px', marginBottom: '40px' }}>
                         <div>
                             <img src="/images/forme-logo.png" className="brand-logo-img" alt="Formé" style={{ height: '80px', width: 'auto', objectFit: 'contain', marginBottom: '16px', display: 'block' }} />
-                            <p style={{ fontSize: '14px', color: C.text, fontWeight: 500, lineHeight: '1.8' }}>Beautifully crafted pieces for the modern African wardrobe. Made with love in Lagos, Nigeria.</p>
+                            <p style={{ fontSize: '14px', color: C.text, fontWeight: 500, lineHeight: '1.8' }}>Beautifully crafted activewear for every form of movement. Made with love in Lagos, Nigeria.</p>
                         </div>
                         <div>
                             <p style={{ fontSize: '11px', letterSpacing: '2.5px', textTransform: 'uppercase', marginBottom: '20px', color: C.accentLight || C.accent, fontWeight: 700 }}>Shop</p>
@@ -216,7 +217,13 @@ export default function StoreLayout({ children }: StoreLayoutProps) {
                             ))}
                         </div>
                         <div>
-                            <p style={{ fontSize: '11px', letterSpacing: '2.5px', textTransform: 'uppercase', marginBottom: '20px', color: C.accentLight || C.accent, fontWeight: 700 }}>Help</p>
+                            <p style={{ fontSize: '11px', letterSpacing: '2.5px', textTransform: 'uppercase', marginBottom: '20px', color: C.accentLight || C.accent, fontWeight: 700 }}>Help &amp; Brand</p>
+                            <Link
+                                href="/about"
+                                style={{ display: 'block', fontSize: '14px', color: C.text, fontWeight: 500, textDecoration: 'none', marginBottom: '12px', transition: 'opacity .2s' }}
+                                onMouseEnter={e => (e.currentTarget.style.opacity = '0.7')}
+                                onMouseLeave={e => (e.currentTarget.style.opacity = '1')}
+                            >About Formé</Link>
                             {['FAQ', 'Size Guide', 'Contact Us'].map(t => (
                                 <p key={t} style={{ fontSize: '14px', color: C.text, fontWeight: 500, marginBottom: '12px', cursor: 'pointer', transition: 'opacity .2s' }}
                                     onMouseEnter={e => (e.currentTarget.style.opacity = '0.7')} onMouseLeave={e => (e.currentTarget.style.opacity = '1')}>{t}</p>
@@ -291,10 +298,10 @@ export default function StoreLayout({ children }: StoreLayoutProps) {
                 <div style={{ flex: 1, overflowY: 'auto', padding: '16px 28px' }}>
                     {cartItems.length === 0 ? (
                         <div style={{ textAlign: 'center', paddingTop: '60px' }}>
-                            <p style={{ fontFamily: "'Playfair Display', serif", fontSize: '22px', color: C.muted, marginBottom: '8px' }}>Your bag is empty</p>
-                            <p style={{ fontSize: '12px', color: C.dim, marginBottom: '28px' }}>Discover something you'll love</p>
+                            <p style={{ fontFamily: "'Playfair Display', serif", fontSize: '22px', color: C.text, marginBottom: '8px' }}>Your active wardrobe starts here</p>
+                            <p style={{ fontSize: '13px', color: C.muted, marginBottom: '28px' }}>Discover pieces built for every form of movement.</p>
                             <button onClick={() => { setCartOpen(false); router.visit('/shop'); }} className="shimmer-button" style={{ background: C.accent, color: '#fff', border: 'none', padding: '14px 36px', fontSize: '11px', letterSpacing: '2px', textTransform: 'uppercase', cursor: 'pointer', fontWeight: 500 }}>
-                                Shop Now
+                                Shop Collection
                             </button>
                         </div>
                     ) : (

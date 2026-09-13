@@ -85,7 +85,7 @@ function ProductCard({ product }: { product: Product }) {
 
 // Marquee ticker
 function Ticker() {
-    const items = ['New Arrivals', 'Made in Lagos', 'Shop Now', 'Forme', 'Crafted for You', 'New Season', 'Forme', 'Free Shipping'];
+    const items = ['Made for Every Form of Movement', 'Move · Perform · Live 🌿', 'Attainable Luxury Activewear', 'Designed in Lagos', 'Activewear for Everyone'];
     return (
         <div style={{ overflow: 'hidden', background: C.surface, borderTop: `1px solid ${C.border}`, borderBottom: `1px solid ${C.border}`, padding: '14px 0' }}>
             <style>{`
@@ -95,7 +95,7 @@ function Ticker() {
             `}</style>
             <div className="ticker-inner">
                 {[...items, ...items].map((item, i) => (
-                    <span key={i} style={{ fontSize: '11px', letterSpacing: '3px', textTransform: 'uppercase', color: i % 4 === 1 ? C.accent : C.muted, padding: '0 32px', whiteSpace: 'nowrap' }}>
+                    <span key={i} style={{ fontSize: '11px', letterSpacing: '3px', textTransform: 'uppercase', color: i % 2 === 1 ? C.accent : C.text, padding: '0 32px', whiteSpace: 'nowrap', fontWeight: 500 }}>
                         {item} {i % 2 === 0 ? '·' : '✦'}
                     </span>
                 ))}
@@ -105,10 +105,10 @@ function Ticker() {
 }
 
 const DEFAULT_SLIDES = [
-    { type: 'image' as const, src: 'https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=900&q=85', poster: null, label: 'The Bloom Edit', sub: 'New Season Arrivals' },
-    { type: 'image' as const, src: 'https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=900&q=85', poster: null, label: 'Summer Essentials', sub: 'Resort Collection' },
-    { type: 'video' as const, src: 'https://assets.mixkit.co/videos/preview/mixkit-fashion-model-walking-on-catwalk-19609-large.mp4', poster: 'https://images.unsplash.com/photo-1469334031218-e382a71b716b?auto=format&fit=crop&w=900&q=80', label: 'Behind the Scenes', sub: 'Our Latest Shoot' },
-    { type: 'image' as const, src: 'https://images.unsplash.com/photo-1469334031218-e382a71b716b?auto=format&fit=crop&w=900&q=85', poster: null, label: 'Made in Lagos', sub: 'For the Modern Woman' },
+    { type: 'image' as const, src: 'https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=900&q=85', poster: null, label: 'Made for Movement', sub: 'Everyday Activewear Essentials' },
+    { type: 'image' as const, src: 'https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=900&q=85', poster: null, label: 'Attainable Luxury', sub: 'Designed for Court, Gym & Life' },
+    { type: 'video' as const, src: 'https://assets.mixkit.co/videos/preview/mixkit-fashion-model-walking-on-catwalk-19609-large.mp4', poster: 'https://images.unsplash.com/photo-1469334031218-e382a71b716b?auto=format&fit=crop&w=900&q=80', label: 'Movement is for Everyone', sub: 'Women, Men & Youth Collections' },
+    { type: 'image' as const, src: 'https://images.unsplash.com/photo-1469334031218-e382a71b716b?auto=format&fit=crop&w=900&q=85', poster: null, label: 'Designed in Lagos', sub: 'Crafted with Purpose & Form' },
 ];
 
 export default function Home({ featuredProducts, categories, newArrivals, heroSlides: serverSlides }: HomeProps) {
@@ -359,19 +359,27 @@ export default function Home({ featuredProducts, categories, newArrivals, heroSl
                 <div style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', pointerEvents: 'none' }}>
                     <span style={{ fontFamily: "'Syne', sans-serif", fontSize: 'clamp(120px,20vw,280px)', fontWeight: 800, color: 'var(--forme-text-border)', opacity: 0.3, userSelect: 'none', letterSpacing: '12px' }}>FORME</span>
                 </div>
-                <ScrollReveal style={{ position: 'relative', maxWidth: '720px', margin: '0 auto' }}>
-                    <p style={{ fontSize: '9px', letterSpacing: '4px', textTransform: 'uppercase', color: C.accent, marginBottom: '24px' }}>Our Philosophy</p>
-                    <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: 'clamp(28px,4vw,56px)', fontWeight: 400, color: C.text, lineHeight: 1.35, marginBottom: '32px' }}>
-                        "Where every piece is<br /><em style={{ color: C.accent }}>shaped around you</em>"
+                <ScrollReveal style={{ position: 'relative', maxWidth: '780px', margin: '0 auto' }}>
+                    <p style={{ fontSize: '10px', letterSpacing: '4px', textTransform: 'uppercase', color: C.accent, marginBottom: '20px', fontWeight: 700 }}>OUR PHILOSOPHY</p>
+                    <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: 'clamp(32px,4.5vw,56px)', fontWeight: 400, color: C.text, lineHeight: 1.25, marginBottom: '16px' }}>
+                        Made for every form of movement.
                     </h2>
-                    <p style={{ fontSize: '14px', color: C.muted, lineHeight: '1.9', marginBottom: '40px' }}>
-                        We believe great fashion starts with understanding the person who wears it. Each Forme piece is designed to move with you — celebrating your shape, your culture, your story.
+                    <p style={{ fontFamily: "'Playfair Display', serif", fontSize: '20px', color: C.accent, fontStyle: 'italic', marginBottom: '24px' }}>
+                        MOVE. PERFORM. LIVE. 🌿
                     </p>
-                    <Link href="/shop" className="shimmer-button" style={{ border: `1px solid ${C.border}`, color: C.muted, padding: '16px 40px', textDecoration: 'none', fontSize: '11px', letterSpacing: '2.5px', textTransform: 'uppercase', display: 'inline-block', transition: 'all .3s' }}
-                        onMouseEnter={e => { e.currentTarget.style.borderColor = C.accent; e.currentTarget.style.color = C.accent; }}
-                        onMouseLeave={e => { e.currentTarget.style.borderColor = C.border; e.currentTarget.style.color = C.muted; }}>
-                        Explore the Collection
-                    </Link>
+                    <p style={{ fontSize: '15px', color: C.muted, lineHeight: '1.9', marginBottom: '40px', maxWidth: '640px', margin: '0 auto 40px' }}>
+                        Movement is part of taking care of ourselves. We created FORMÉ to bridge beautiful design, quality, function, inclusivity, and attainable pricing — because affordable should never mean forgettable.
+                    </p>
+                    <div style={{ display: 'flex', gap: '16px', justifyContent: 'center', flexWrap: 'wrap' }}>
+                        <Link href="/about" className="shimmer-button" style={{ background: C.accent, color: '#fff', padding: '16px 36px', textDecoration: 'none', fontSize: '11px', letterSpacing: '2.5px', textTransform: 'uppercase', display: 'inline-block', fontWeight: 600, borderRadius: '2px', transition: 'all .3s' }}>
+                            Discover Our Story
+                        </Link>
+                        <Link href="/shop" style={{ border: `1px solid ${C.border}`, color: C.text, padding: '16px 36px', textDecoration: 'none', fontSize: '11px', letterSpacing: '2.5px', textTransform: 'uppercase', display: 'inline-block', fontWeight: 600, borderRadius: '2px', transition: 'all .3s' }}
+                            onMouseEnter={e => { e.currentTarget.style.borderColor = C.accent; e.currentTarget.style.color = C.accent; }}
+                            onMouseLeave={e => { e.currentTarget.style.borderColor = C.border; e.currentTarget.style.color = C.text; }}>
+                            Shop Collection
+                        </Link>
+                    </div>
                 </ScrollReveal>
             </section>
 

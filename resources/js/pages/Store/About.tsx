@@ -1,0 +1,356 @@
+import React from 'react';
+import { Head, Link } from '@inertiajs/react';
+import ScrollReveal from '@/components/ScrollReveal';
+
+const C = {
+    bg: 'var(--forme-bg)',
+    surface: 'var(--forme-surface)',
+    border: 'var(--forme-border)',
+    accent: 'var(--forme-accent)',
+    text: 'var(--forme-text)',
+    muted: 'var(--forme-muted)',
+    dim: 'var(--forme-dim)',
+};
+
+export default function About() {
+    return (
+        <>
+            <Head title="About Formé — Made for Every Form of Movement" />
+
+            <div style={{ background: C.bg, color: C.text, minHeight: '100vh', paddingBottom: '80px' }}>
+                {/* Hero Header */}
+                <section style={{
+                    position: 'relative',
+                    padding: '100px 24px 80px',
+                    textAlign: 'center',
+                    background: `linear-gradient(180deg, ${C.surface} 0%, ${C.bg} 100%)`,
+                    borderBottom: `1px solid ${C.border}`,
+                    overflow: 'hidden'
+                }}>
+                    <div style={{
+                        position: 'absolute',
+                        top: '-50%',
+                        left: '50%',
+                        transform: 'translateX(-50%)',
+                        width: '600px',
+                        height: '600px',
+                        background: `radial-gradient(circle, ${C.accent}15 0%, transparent 70%)`,
+                        pointerEvents: 'none',
+                        borderRadius: '50%'
+                    }} />
+
+                    <ScrollReveal animation="fade-down">
+                        <div style={{
+                            display: 'inline-flex',
+                            alignItems: 'center',
+                            gap: '10px',
+                            padding: '6px 16px',
+                            borderRadius: '30px',
+                            border: `1px solid ${C.accent}`,
+                            background: `${C.accent}10`,
+                            color: C.accent,
+                            fontSize: '11px',
+                            letterSpacing: '3px',
+                            textTransform: 'uppercase',
+                            fontWeight: 600,
+                            marginBottom: '24px'
+                        }}>
+                            <span>✦</span> ABOUT FORMÉ
+                        </div>
+                    </ScrollReveal>
+
+                    <ScrollReveal animation="fade-up" delay={100}>
+                        <h1 style={{
+                            fontFamily: "'Playfair Display', serif",
+                            fontSize: 'clamp(36px, 5vw, 64px)',
+                            fontWeight: 400,
+                            lineHeight: 1.15,
+                            letterSpacing: '-0.02em',
+                            maxWidth: '900px',
+                            margin: '0 auto 20px',
+                            color: C.text
+                        }}>
+                            Made for every form of movement.
+                        </h1>
+                    </ScrollReveal>
+
+                    <ScrollReveal animation="fade-up" delay={200}>
+                        <p style={{
+                            fontSize: 'clamp(16px, 2vw, 22px)',
+                            color: C.accent,
+                            fontFamily: "'Playfair Display', serif",
+                            fontStyle: 'italic',
+                            maxWidth: '680px',
+                            margin: '0 auto',
+                            fontWeight: 400
+                        }}>
+                            Why should living an active life cost so much?
+                        </p>
+                    </ScrollReveal>
+                </section>
+
+                <div style={{ maxWidth: '1000px', margin: '0 auto', padding: '0 24px' }}>
+
+                    {/* Main Story Section */}
+                    <section style={{ padding: '80px 0 60px', borderBottom: `1px solid ${C.border}` }}>
+                        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '48px', alignItems: 'center' }}>
+                            <ScrollReveal animation="fade-right">
+                                <div style={{ position: 'relative' }}>
+                                    <div style={{
+                                        aspectRatio: '4/5',
+                                        borderRadius: '4px',
+                                        overflow: 'hidden',
+                                        border: `1px solid ${C.border}`,
+                                        background: C.surface
+                                    }}>
+                                        <img
+                                            src="https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=900&q=85"
+                                            alt="Movement for everyone"
+                                            style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                                        />
+                                    </div>
+                                    <div style={{
+                                        position: 'absolute',
+                                        bottom: '-20px',
+                                        right: '-20px',
+                                        background: C.surface,
+                                        border: `1px solid ${C.accent}`,
+                                        padding: '20px 24px',
+                                        borderRadius: '4px',
+                                        boxShadow: '0 12px 32px rgba(0,0,0,0.3)'
+                                    }}>
+                                        <p style={{ fontSize: '12px', letterSpacing: '2px', textTransform: 'uppercase', color: C.accent, fontWeight: 700 }}>Our Belief</p>
+                                        <p style={{ fontFamily: "'Playfair Display', serif", fontSize: '18px', color: C.text, marginTop: '4px' }}>Affordable should never mean forgettable.</p>
+                                    </div>
+                                </div>
+                            </ScrollReveal>
+
+                            <div>
+                                <ScrollReveal animation="fade-up">
+                                    <p style={{ fontSize: '16px', lineHeight: '1.8', color: C.text, marginBottom: '20px', fontWeight: 400 }}>
+                                        Movement is part of taking care of ourselves. It might be an early-morning workout, an evening tennis match, a round of golf, a long walk, playing your favourite sport, or simply choosing to move a little more every day.
+                                    </p>
+                                </ScrollReveal>
+                                <ScrollReveal animation="fade-up" delay={100}>
+                                    <p style={{ fontSize: '16px', lineHeight: '1.8', color: C.text, marginBottom: '20px', fontWeight: 400 }}>
+                                        But when we went looking for beautiful, well-made activewear to live that lifestyle in, we kept finding the same thing: prices that made something so everyday feel unnecessarily exclusive.
+                                    </p>
+                                </ScrollReveal>
+                                <ScrollReveal animation="fade-up" delay={200}>
+                                    <p style={{ fontSize: '18px', fontFamily: "'Playfair Display', serif", fontStyle: 'italic', color: C.accent, marginBottom: '20px', fontWeight: 500 }}>
+                                        And that didn’t make sense to us.
+                                    </p>
+                                </ScrollReveal>
+                                <ScrollReveal animation="fade-up" delay={300}>
+                                    <p style={{ fontSize: '16px', lineHeight: '1.8', color: C.text, marginBottom: '20px', fontWeight: 400 }}>
+                                        If movement is part of your lifestyle, your active wardrobe shouldn’t have to consist of one or two pieces you’re afraid to replace. You should be able to build a wardrobe you genuinely love — pieces you can train in, play in, travel in and live in, without feeling like every purchase has to break the bank.
+                                    </p>
+                                </ScrollReveal>
+                                <ScrollReveal animation="fade-up" delay={400}>
+                                    <p style={{ fontSize: '18px', fontWeight: 600, color: C.text, marginTop: '28px', borderLeft: `3px solid ${C.accent}`, paddingLeft: '16px' }}>
+                                        That is why we created FORMÉ.
+                                    </p>
+                                </ScrollReveal>
+                            </div>
+                        </div>
+                    </section>
+
+                    {/* 5 Core Pillars Grid */}
+                    <section style={{ padding: '60px 0', borderBottom: `1px solid ${C.border}` }}>
+                        <ScrollReveal animation="fade-up">
+                            <p style={{ textAlign: 'center', fontSize: '11px', letterSpacing: '3px', textTransform: 'uppercase', color: C.accent, fontWeight: 700, marginBottom: '12px' }}>
+                                OUR FOUNDATION
+                            </p>
+                            <h2 style={{ textAlign: 'center', fontFamily: "'Playfair Display', serif", fontSize: '32px', color: C.text, marginBottom: '44px', fontWeight: 400 }}>
+                                What Should Never Be Separated
+                            </h2>
+                        </ScrollReveal>
+
+                        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: '20px' }}>
+                            {[
+                                { title: 'Beautiful Design', desc: 'Elevated aesthetics crafted for elegance on and off the court.' },
+                                { title: 'Quality', desc: 'Considered fabrics built to endure active lifestyles.' },
+                                { title: 'Function', desc: 'Uncompromised performance designed to move with your body.' },
+                                { title: 'Inclusivity', desc: 'Activewear made for every body, age, and coverage preference.' },
+                                { title: 'Attainable Pricing', desc: 'Fair luxury pricing that empowers you to build a full active wardrobe.' },
+                            ].map((pillar, i) => (
+                                <ScrollReveal key={pillar.title} animation="fade-up" delay={i * 100}>
+                                    <div style={{
+                                        background: C.surface,
+                                        border: `1px solid ${C.border}`,
+                                        padding: '28px 20px',
+                                        borderRadius: '4px',
+                                        height: '100%',
+                                        transition: 'transform 0.3s ease, border-color 0.3s ease',
+                                    }}
+                                    onMouseEnter={e => { e.currentTarget.style.borderColor = C.accent; e.currentTarget.style.transform = 'translateY(-4px)'; }}
+                                    onMouseLeave={e => { e.currentTarget.style.borderColor = C.border; e.currentTarget.style.transform = 'translateY(0)'; }}
+                                    >
+                                        <span style={{ fontSize: '12px', color: C.accent, fontWeight: 700, display: 'block', marginBottom: '8px' }}>0{i + 1}</span>
+                                        <h3 style={{ fontFamily: "'Playfair Display', serif", fontSize: '18px', color: C.text, marginBottom: '10px', fontWeight: 600 }}>{pillar.title}</h3>
+                                        <p style={{ fontSize: '13px', color: C.muted, lineHeight: '1.6' }}>{pillar.desc}</p>
+                                    </div>
+                                </ScrollReveal>
+                            ))}
+                        </div>
+                    </section>
+
+                    {/* WHY FORMÉ? Section */}
+                    <section style={{ padding: '80px 0', borderBottom: `1px solid ${C.border}` }}>
+                        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '48px', alignItems: 'center' }}>
+                            <div>
+                                <ScrollReveal animation="fade-right">
+                                    <div style={{ display: 'inline-block', padding: '4px 12px', background: `${C.accent}15`, color: C.accent, fontSize: '11px', letterSpacing: '2.5px', textTransform: 'uppercase', fontWeight: 700, borderRadius: '2px', marginBottom: '16px' }}>
+                                        THE MEANING
+                                    </div>
+                                    <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: '38px', color: C.text, marginBottom: '24px', fontWeight: 400 }}>
+                                        WHY FORMÉ?
+                                    </h2>
+                                    <p style={{ fontSize: '16px', lineHeight: '1.8', color: C.text, marginBottom: '20px' }}>
+                                        Our name is inspired by the French word <em>forme</em>, meaning form or shape, and a word closely connected in French with being fit and well.
+                                    </p>
+                                    <p style={{ fontSize: '16px', lineHeight: '1.8', color: C.text, marginBottom: '28px' }}>
+                                        That meaning felt deeply connected to everything we wanted the brand to represent.
+                                    </p>
+                                </ScrollReveal>
+
+                                <div style={{ display: 'flex', flexDirection: 'column', gap: '14px', marginBottom: '28px' }}>
+                                    {[
+                                        'Your form is your shape.',
+                                        'Your form is how you move.',
+                                        'Your form is how you show up.',
+                                    ].map((statement, idx) => (
+                                        <ScrollReveal key={statement} animation="fade-up" delay={idx * 100}>
+                                            <div style={{ display: 'flex', alignItems: 'center', gap: '14px', background: C.surface, padding: '16px 20px', borderRadius: '4px', border: `1px solid ${C.border}` }}>
+                                                <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: C.accent, flexShrink: 0 }} />
+                                                <p style={{ fontFamily: "'Playfair Display', serif", fontSize: '17px', color: C.text, fontWeight: 500 }}>{statement}</p>
+                                            </div>
+                                        </ScrollReveal>
+                                    ))}
+                                </div>
+
+                                <ScrollReveal animation="fade-up" delay={300}>
+                                    <p style={{ fontSize: '15px', lineHeight: '1.8', color: C.text, marginBottom: '16px' }}>
+                                        But to us, FORMÉ goes beyond the physical. We’re all constantly forming: our habits, our confidence, our routines, our lifestyles and the people we’re becoming.
+                                    </p>
+                                    <p style={{ fontSize: '15px', lineHeight: '1.8', color: C.text }}>
+                                        The accent on the <strong>É</strong> gives FORMÉ its own distinctive identity, while keeping form at the heart of our name and everything we create. It’s about showing up in your form, wherever you are in your journey.
+                                    </p>
+                                </ScrollReveal>
+                            </div>
+
+                            <ScrollReveal animation="fade-left">
+                                <div style={{
+                                    background: C.surface,
+                                    border: `1px solid ${C.border}`,
+                                    padding: '40px 32px',
+                                    borderRadius: '8px',
+                                    textAlign: 'center',
+                                    position: 'relative'
+                                }}>
+                                    <span style={{ fontFamily: "'Playfair Display', serif", fontSize: '72px', color: C.accent, display: 'block', lineHeight: 1, marginBottom: '12px', fontWeight: 600 }}>É</span>
+                                    <h3 style={{ fontFamily: "'Playfair Display', serif", fontSize: '24px', color: C.text, marginBottom: '16px' }}>Constantly Forming</h3>
+                                    <p style={{ fontSize: '14px', color: C.muted, lineHeight: '1.7' }}>
+                                        "FORMÉ isn’t about achieving one 'perfect' body or fitting into one definition of what being fit should look like. It’s about showing up in your form, wherever you are."
+                                    </p>
+                                </div>
+                            </ScrollReveal>
+                        </div>
+                    </section>
+
+                    {/* MORE THAN ACTIVEWEAR Section */}
+                    <section style={{ padding: '80px 0 60px' }}>
+                        <ScrollReveal animation="fade-up">
+                            <div style={{ textAlign: 'center', maxWidth: '720px', margin: '0 auto 48px' }}>
+                                <p style={{ fontSize: '11px', letterSpacing: '3px', textTransform: 'uppercase', color: C.accent, fontWeight: 700, marginBottom: '12px' }}>
+                                    BUILT FOR LIFE
+                                </p>
+                                <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: '38px', color: C.text, marginBottom: '18px', fontWeight: 400 }}>
+                                    MORE THAN ACTIVEWEAR.
+                                </h2>
+                                <p style={{ fontSize: '16px', color: C.muted, lineHeight: '1.7' }}>
+                                    FORMÉ was created for movement, but designed for life.
+                                </p>
+                            </div>
+                        </ScrollReveal>
+
+                        {/* Audience Grid */}
+                        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '20px', marginBottom: '48px' }}>
+                            {[
+                                { title: 'For Women', detail: 'Elevated, high-support & chic silhouettes for every active routine.' },
+                                { title: 'For Men', detail: 'Engineered performance & breathable everyday athletic essentials.' },
+                                { title: 'For Children', detail: 'Durable, comfortable sportswear crafted for young active movers.' },
+                                { title: 'Modest Coverage', detail: 'Considered, elegant designs for those who prefer full coverage.' },
+                                { title: 'All Fitness Levels', detail: 'From seasoned athletes to taking your very first step.' },
+                            ].map((item, idx) => (
+                                <ScrollReveal key={item.title} animation="fade-up" delay={idx * 80}>
+                                    <div style={{
+                                        background: C.surface,
+                                        border: `1px solid ${C.border}`,
+                                        padding: '24px',
+                                        borderRadius: '4px',
+                                        textAlign: 'left'
+                                    }}>
+                                        <p style={{ fontSize: '11px', letterSpacing: '2px', textTransform: 'uppercase', color: C.accent, fontWeight: 700, marginBottom: '8px' }}>INCLUSIVE</p>
+                                        <h3 style={{ fontFamily: "'Playfair Display', serif", fontSize: '20px', color: C.text, marginBottom: '8px' }}>{item.title}</h3>
+                                        <p style={{ fontSize: '13px', color: C.muted, lineHeight: '1.6' }}>{item.detail}</p>
+                                    </div>
+                                </ScrollReveal>
+                            ))}
+                        </div>
+
+                        <ScrollReveal animation="fade-up">
+                            <div style={{
+                                background: `linear-gradient(135deg, ${C.surface} 0%, ${C.bg} 100%)`,
+                                border: `1px solid ${C.border}`,
+                                padding: '48px 32px',
+                                borderRadius: '8px',
+                                textAlign: 'center',
+                                maxWidth: '800px',
+                                margin: '0 auto'
+                            }}>
+                                <p style={{ fontFamily: "'Playfair Display', serif", fontSize: '22px', color: C.text, lineHeight: '1.6', marginBottom: '24px', fontWeight: 400 }}>
+                                    "Because there isn’t one way to move, and there isn’t one body that movement belongs to. From training to court. From sport to everyday life."
+                                </p>
+                                <p style={{ fontSize: '15px', color: C.muted, marginBottom: '36px', maxWidth: '600px', margin: '0 auto 36px', lineHeight: '1.7' }}>
+                                    We want to create beautiful, functional pieces that allow more people to move comfortably, confidently and in their own form, without luxury having to mean inaccessible.
+                                </p>
+
+                                <div style={{
+                                    display: 'inline-block',
+                                    borderTop: `1px solid ${C.accent}`,
+                                    borderBottom: `1px solid ${C.accent}`,
+                                    padding: '16px 32px',
+                                    marginBottom: '32px'
+                                }}>
+                                    <h3 style={{ fontFamily: "'Syne', sans-serif", fontSize: 'clamp(20px, 3vw, 28px)', color: C.text, letterSpacing: '4px', textTransform: 'uppercase', fontWeight: 800 }}>
+                                        MOVE. PERFORM. LIVE. 🌿
+                                    </h3>
+                                </div>
+
+                                <div>
+                                    <Link href="/shop" className="shimmer-button" style={{
+                                        display: 'inline-block',
+                                        background: C.accent,
+                                        color: '#fff',
+                                        textDecoration: 'none',
+                                        padding: '16px 40px',
+                                        fontSize: '12px',
+                                        letterSpacing: '2.5px',
+                                        textTransform: 'uppercase',
+                                        fontWeight: 600,
+                                        borderRadius: '2px',
+                                        transition: 'all 0.3s ease'
+                                    }}>
+                                        Explore the Collection
+                                    </Link>
+                                </div>
+                            </div>
+                        </ScrollReveal>
+                    </section>
+
+                </div>
+            </div>
+        </>
+    );
+}
