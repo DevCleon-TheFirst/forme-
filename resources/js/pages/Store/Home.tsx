@@ -206,7 +206,7 @@ export default function Home({ featuredProducts, categories, newArrivals, heroSl
                         <Link href="/collections/new-arrivals" style={{ border: `1px solid ${C.border}`, color: C.muted, padding: '14px 24px', textDecoration: 'none', fontSize: '11px', letterSpacing: '2.5px', textTransform: 'uppercase', display: 'inline-block', transition: 'all .3s' }}
                             onMouseEnter={e => { e.currentTarget.style.borderColor = C.accent; e.currentTarget.style.color = C.accent; }}
                             onMouseLeave={e => { e.currentTarget.style.borderColor = C.border; e.currentTarget.style.color = C.muted; }}>
-                            New Arrivals
+                            Launch 001
                         </Link>
                     </div>
                 </div>
