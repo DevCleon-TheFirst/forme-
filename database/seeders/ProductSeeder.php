@@ -17,7 +17,7 @@ class ProductSeeder extends Seeder
             ['name' => 'Sets',        'slug' => 'sets',        'description' => 'Co-ord sets and matching pieces'],
             ['name' => 'Tops',        'slug' => 'tops',        'description' => 'Chic tops and blouses'],
             ['name' => 'Accessories', 'slug' => 'accessories', 'description' => 'Statement accessories'],
-            ['name' => 'New Arrivals','slug' => 'new-arrivals','description' => 'The latest from Petals Lagos'],
+            ['name' => 'Launch 001',   'slug' => 'new-arrivals','description' => 'The latest activewear from Formé Lagos'],
         ];
 
         foreach ($categories as $i => $cat) {

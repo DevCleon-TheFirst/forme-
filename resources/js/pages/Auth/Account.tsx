@@ -83,7 +83,7 @@ export default function Account({ user, flash }: AccountProps) {
                     {[
                         { icon: '📦', label: 'My Orders', href: '/account/orders' },
                         { icon: '🛍️', label: 'Continue Shopping', href: '/shop' },
-                        { icon: '❤️', label: 'New Arrivals', href: '/collections/new-arrivals' },
+                        { icon: '❤️', label: 'Launch 001', href: '/collections/new-arrivals' },
                     ].map(card => (
                         <Link key={card.href} href={card.href} style={{ textDecoration: 'none', background: '#faf7f2', border: '1px solid #EDE8DF', padding: '24px', borderRadius: '4px', display: 'flex', alignItems: 'center', gap: '16px', transition: 'background 0.2s' }}
                             onMouseEnter={e => (e.currentTarget.style.background = '#f5f0eb')}

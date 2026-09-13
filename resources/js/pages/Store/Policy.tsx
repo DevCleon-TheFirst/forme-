@@ -53,7 +53,7 @@ const sections = [
             },
             {
                 title: 'Delivery & Exchange Costs',
-                body: 'If an error occurs on our end, we will take full responsibility for any necessary delivery or return costs. Customers are responsible for any additional delivery costs resulting from an incorrect or incomplete delivery address provided at the time of ordering.',
+                body: 'If an error occurs on our end, we will take full responsibility for any necessary delivery or return costs. Customers are responsible for any additional delivery or exchange costs resulting from incorrect order details provided at the time of ordering, including size, color, item, or delivery address.',
             },
             {
                 title: 'Our Commitment',
