@@ -17,7 +17,7 @@ createInertiaApp({
         resolvePageComponent(
             `./pages/${name}.tsx`,
             import.meta.glob('./pages/**/*.tsx'),
-        ),
+        ) as any,
     layout: (name) => {
         if (name.startsWith('Store/') || name.startsWith('Auth/')) {
             return StoreLayout;

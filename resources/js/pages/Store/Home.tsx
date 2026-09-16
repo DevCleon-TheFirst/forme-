@@ -25,6 +25,7 @@ const C = {
     surface: 'var(--forme-surface)',
     border: 'var(--forme-border)',
     accent: 'var(--forme-accent)',
+    accentLight: 'var(--forme-accent)',
     text: 'var(--forme-text)',
     muted: 'var(--forme-muted)',
     dim: 'var(--forme-dim)',

@@ -4,6 +4,8 @@ interface ScrollRevealProps {
     children: React.ReactNode;
     className?: string;
     style?: React.CSSProperties;
+    animation?: string;
+    delay?: number;
     delayMs?: number;
     threshold?: number;
     as?: React.ElementType;
@@ -13,10 +15,13 @@ export default function ScrollReveal({
     children,
     className = '',
     style,
-    delayMs = 0,
+    animation,
+    delay,
+    delayMs,
     threshold = 0.15,
     as: Component = 'div',
 }: ScrollRevealProps) {
+    const finalDelay = delay ?? delayMs ?? 0;
     const ref = useRef<HTMLElement | null>(null);
 
     useEffect(() => {
@@ -47,7 +52,7 @@ export default function ScrollReveal({
         <Component
             ref={ref}
             className={`reveal-on-scroll ${className}`}
-            style={{ ...style, ...(delayMs ? { transitionDelay: `${delayMs}ms` } : {}) }}
+            style={{ ...style, ...(finalDelay ? { transitionDelay: `${finalDelay}ms` } : {}) }}
         >
             {children}
         </Component>

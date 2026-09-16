@@ -23,36 +23,36 @@ class CheckoutController extends Controller
 
     public function show(): Response
     {
-        $cart  = $this->getCart();
+        $cart = $this->getCart();
         $items = $cart->items()->with(['variant.product.images'])->get();
 
         if ($items->isEmpty()) {
             return redirect()->route('cart.show');
         }
 
-        $subtotal    = $items->sum(fn ($i) => $i->variant->final_price * $i->quantity);
+        $subtotal = $items->sum(fn($i) => $i->variant->final_price * $i->quantity);
         $shippingFee = $subtotal >= 50000 ? 0 : 3000;
 
         $user = auth()->user();
 
         return Inertia::render('Store/Checkout', [
-            'cartItems'   => $items->map(fn ($item) => [
-                'product_name'        => $item->variant->product->name,
+            'cartItems' => $items->map(fn($item) => [
+                'product_name' => $item->variant->product->name,
                 'variant_description' => $item->variant->description,
-                'quantity'            => $item->quantity,
-                'unit_price'          => $item->variant->final_price,
-                'image'               => $item->variant->product->images->first()
+                'quantity' => $item->quantity,
+                'unit_price' => $item->variant->final_price,
+                'image' => $item->variant->product->images->first()
                     ? asset('storage/' . $item->variant->product->images->first()->image_path)
                     : null,
             ]),
-            'subtotal'    => $subtotal,
+            'subtotal' => $subtotal,
             'shippingFee' => $shippingFee,
-            'total'       => $subtotal + $shippingFee,
-            'user'        => $user,
+            'total' => $subtotal + $shippingFee,
+            'user' => $user,
             // Pass saved card info so frontend can show "Pay with saved card" toggle
-            'savedCard'   => $user && $user->paystack_auth_code ? [
+            'savedCard' => $user && $user->paystack_auth_code ? [
                 'last_four' => $user->card_last_four,
-                'brand'     => $user->card_brand,
+                'brand' => $user->card_brand,
             ] : null,
         ]);
     }
@@ -60,25 +60,25 @@ class CheckoutController extends Controller
     public function initiate(Request $request)
     {
         $request->validate([
-            'customer_name'    => 'required|string',
-            'customer_email'   => 'required|email',
-            'customer_phone'   => 'nullable|string',
+            'customer_name' => 'required|string',
+            'customer_email' => 'required|email',
+            'customer_phone' => 'nullable|string',
             'shipping_address' => 'required|string',
-            'shipping_city'    => 'required|string',
-            'shipping_state'   => 'required|string',
-            'use_saved_card'   => 'nullable|boolean',
+            'shipping_city' => 'required|string',
+            'shipping_state' => 'required|string',
+            'use_saved_card' => 'nullable|boolean',
         ]);
 
-        $cart  = $this->getCart();
+        $cart = $this->getCart();
         $items = $cart->items()->with(['variant.product'])->get();
 
         if ($items->isEmpty()) {
             return back()->withErrors(['cart' => 'Your cart is empty']);
         }
 
-        $subtotal    = $items->sum(fn ($i) => $i->variant->final_price * $i->quantity);
+        $subtotal = $items->sum(fn($i) => $i->variant->final_price * $i->quantity);
         $shippingFee = $subtotal >= 50000 ? 0 : 3000;
-        $total       = $subtotal + $shippingFee;
+        $total = $subtotal + $shippingFee;
 
         // ── Idempotency Check: Reuse recent unpaid pending order if duplicate request ──
         $existingOrder = Order::where('customer_email', $request->customer_email)
@@ -93,48 +93,53 @@ class CheckoutController extends Controller
         } else {
             // Create order in pending state
             $order = Order::create([
-                'order_number'     => Order::generateOrderNumber(),
-                'user_id'          => auth()->id(),
-                'status'           => 'pending',
-                'payment_status'   => 'unpaid',
-                'subtotal'         => $subtotal,
-                'shipping_fee'     => $shippingFee,
-                'total_amount'     => $total,
-                'customer_name'    => $request->customer_name,
-                'customer_email'   => $request->customer_email,
-                'customer_phone'   => $request->customer_phone,
+                'order_number' => Order::generateOrderNumber(),
+                'user_id' => auth()->id(),
+                'status' => 'pending',
+                'payment_status' => 'unpaid',
+                'subtotal' => $subtotal,
+                'shipping_fee' => $shippingFee,
+                'total_amount' => $total,
+                'customer_name' => $request->customer_name,
+                'customer_email' => $request->customer_email,
+                'customer_phone' => $request->customer_phone,
                 'shipping_address' => $request->shipping_address,
-                'shipping_city'    => $request->shipping_city,
-                'shipping_state'   => $request->shipping_state,
-                'notes'            => $request->notes,
+                'shipping_city' => $request->shipping_city,
+                'shipping_state' => $request->shipping_state,
+                'notes' => $request->notes,
             ]);
 
             foreach ($items as $item) {
                 OrderItem::create([
-                    'order_id'            => $order->id,
-                    'product_variant_id'  => $item->variant->id,
-                    'product_name'        => $item->variant->product->name,
+                    'order_id' => $order->id,
+                    'product_variant_id' => $item->variant->id,
+                    'product_name' => $item->variant->product->name,
                     'variant_description' => $item->variant->description,
-                    'quantity'            => $item->quantity,
-                    'unit_price'          => $item->variant->final_price,
-                    'total_price'         => $item->variant->final_price * $item->quantity,
+                    'quantity' => $item->quantity,
+                    'unit_price' => $item->variant->final_price,
+                    'total_price' => $item->variant->final_price * $item->quantity,
                 ]);
             }
         }
 
         $paystackKey = config('services.paystack.secret_key');
 
+        if (!$paystackKey || str_contains($paystackKey, 'your_secret_key_here')) {
+            Log::error('Paystack initialization failed: Placeholder or missing PAYSTACK_SECRET_KEY in .env');
+            return back()->withErrors(['payment' => 'Payment failed: Paystack API key is not configured in .env. Please set PAYSTACK_SECRET_KEY.']);
+        }
+
         // ── Pay with saved card (charge authorization) ──────────────────────
         $user = auth()->user();
         if ($request->boolean('use_saved_card') && $user && $user->paystack_auth_code) {
             $chargeResponse = Http::withToken($paystackKey)
                 ->post('https://api.paystack.co/transaction/charge_authorization', [
-                    'email'              => $request->customer_email,
-                    'amount'             => (int) ($total * 100),
-                    'currency'           => 'NGN',
+                    'email' => $request->customer_email,
+                    'amount' => (int) ($total * 100),
+                    'currency' => 'NGN',
                     'authorization_code' => $user->paystack_auth_code,
-                    'reference'          => $order->order_number,
-                    'metadata'           => $this->buildMetadata($order, $items),
+                    'reference' => $order->order_number,
+                    'metadata' => $this->buildMetadata($order, $items),
                 ]);
 
             if ($chargeResponse->successful() && $chargeResponse->json('data.status') === 'success') {
@@ -142,24 +147,32 @@ class CheckoutController extends Controller
             }
 
             // Charge failed — fall through to standard redirect checkout
-            Log::warning('Saved-card charge failed for order ' . $order->order_number);
+            Log::warning('Saved-card charge failed for order ' . $order->order_number, [
+                'status' => $chargeResponse->status(),
+                'response' => $chargeResponse->json() ?? $chargeResponse->body(),
+            ]);
         }
 
         // ── Standard Paystack redirect checkout ─────────────────────────────
         $response = Http::withToken($paystackKey)
             ->post('https://api.paystack.co/transaction/initialize', [
-                'email'        => $request->customer_email,
-                'amount'       => (int) ($total * 100),
-                'currency'     => 'NGN',
-                'reference'    => $order->order_number,
-                'channels'     => ['card', 'bank', 'bank_transfer', 'ussd', 'qr'],
-                'metadata'     => $this->buildMetadata($order, $items),
+                'email' => $request->customer_email,
+                'amount' => (int) ($total * 100),
+                'currency' => 'NGN',
+                'reference' => $order->order_number,
+                'channels' => ['card', 'bank', 'bank_transfer', 'ussd', 'qr'],
+                'metadata' => $this->buildMetadata($order, $items),
                 'callback_url' => route('checkout.callback'),
             ]);
 
-        if (! $response->successful()) {
+        if (!$response->successful()) {
+            $errorMsg = $response->json('message') ?? 'Payment initialization failed. Please try again.';
+            Log::error('Paystack transaction/initialize error for order ' . $order->order_number, [
+                'http_status' => $response->status(),
+                'response' => $response->json() ?? $response->body(),
+            ]);
             $order->delete();
-            return back()->withErrors(['payment' => 'Payment initialization failed. Please try again.']);
+            return back()->withErrors(['payment' => 'Paystack Error: ' . $errorMsg]);
         }
 
         return Inertia::location($response->json('data.authorization_url'));
@@ -168,22 +181,22 @@ class CheckoutController extends Controller
     public function callback(Request $request)
     {
         $reference = $request->reference;
-        if (! $reference) {
+        if (!$reference) {
             return redirect()->route('home')->withErrors(['payment' => 'Invalid payment reference']);
         }
 
         $paystackKey = config('services.paystack.secret_key');
-        $response    = Http::withToken($paystackKey)
+        $response = Http::withToken($paystackKey)
             ->get("https://api.paystack.co/transaction/verify/{$reference}");
 
-        if (! $response->successful()) {
+        if (!$response->successful()) {
             return redirect()->route('checkout.show')->withErrors(['payment' => 'Payment verification failed']);
         }
 
-        $data  = $response->json('data');
+        $data = $response->json('data');
         $order = Order::where('order_number', $reference)->first();
 
-        if (! $order) {
+        if (!$order) {
             return redirect()->route('home');
         }
 
@@ -205,19 +218,21 @@ class CheckoutController extends Controller
         }
 
         $order->update([
-            'payment_status'    => 'paid',
+            'payment_status' => 'paid',
             'payment_reference' => $paystackData['reference'],
-            'status'            => 'processing',
+            'status' => 'processing',
         ]);
 
         // Save card token for future one-click checkout
         $user = auth()->user() ?? \App\Models\User::find($order->user_id);
-        if ($user && ! empty($paystackData['authorization']['reusable'])
-            && $paystackData['authorization']['reusable']) {
+        if (
+            $user && !empty($paystackData['authorization']['reusable'])
+            && $paystackData['authorization']['reusable']
+        ) {
             $user->update([
                 'paystack_auth_code' => $paystackData['authorization']['authorization_code'],
-                'card_last_four'     => $paystackData['authorization']['last4'],
-                'card_brand'         => $paystackData['authorization']['brand'],
+                'card_last_four' => $paystackData['authorization']['last4'],
+                'card_brand' => $paystackData['authorization']['brand'],
             ]);
         }
 
@@ -238,7 +253,7 @@ class CheckoutController extends Controller
      */
     private function buildMetadata(Order $order, $items): array
     {
-        $customFields = $items->map(fn ($item) => [
+        $customFields = $items->map(fn($item) => [
             'display_name' => $item->variant->product->name,
             'variable_name' => 'item_' . $item->variant->id,
             'value' => $item->variant->description
@@ -247,8 +262,8 @@ class CheckoutController extends Controller
         ])->toArray();
 
         return [
-            'order_id'      => $order->id,
-            'order_number'  => $order->order_number,
+            'order_id' => $order->id,
+            'order_number' => $order->order_number,
             'custom_fields' => $customFields,
         ];
     }
@@ -259,20 +274,20 @@ class CheckoutController extends Controller
 
         return Inertia::render('Store/OrderConfirmation', [
             'order' => [
-                'order_number'   => $order->order_number,
-                'status'         => $order->status,
+                'order_number' => $order->order_number,
+                'status' => $order->status,
                 'payment_status' => $order->payment_status,
-                'total_amount'   => $order->total_amount,
-                'customer_name'  => $order->customer_name,
+                'total_amount' => $order->total_amount,
+                'customer_name' => $order->customer_name,
                 'customer_email' => $order->customer_email,
-                'shipping_city'  => $order->shipping_city,
+                'shipping_city' => $order->shipping_city,
                 'shipping_state' => $order->shipping_state,
-                'items'          => $order->items->map(fn ($i) => [
-                    'product_name'        => $i->product_name,
+                'items' => $order->items->map(fn($i) => [
+                    'product_name' => $i->product_name,
                     'variant_description' => $i->variant_description,
-                    'quantity'            => $i->quantity,
-                    'unit_price'          => $i->unit_price,
-                    'total_price'         => $i->total_price,
+                    'quantity' => $i->quantity,
+                    'unit_price' => $i->unit_price,
+                    'total_price' => $i->total_price,
                 ]),
             ],
         ]);
