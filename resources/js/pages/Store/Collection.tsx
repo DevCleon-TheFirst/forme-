@@ -37,7 +37,6 @@ function ProductCard({ product }: { product: Product }) {
                     ) : (
                         <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=600&q=80" alt={product.name} style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', transition: 'opacity 0.5s', opacity: 1 }} />
                     )}
-                    {product.compare_price && <span style={{ position: 'absolute', top: '12px', left: '12px', background: 'var(--forme-accent, #8B1A2A)', color: 'var(--forme-surface, #fff)', fontSize: '10px', letterSpacing: '1px', padding: '4px 8px' }}>SALE</span>}
                 </div>
                 <div>
                     {product.category && <p style={{ fontSize: '10px', color: 'var(--forme-dim, #888)', letterSpacing: '1.5px', textTransform: 'uppercase', marginBottom: '4px' }}>{product.category}</p>}

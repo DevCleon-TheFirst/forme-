@@ -213,7 +213,7 @@ export default function Policy() {
                             Email Us
                         </a>
                         <a
-                            href="https://wa.me/2347084704785"
+                            href="https://wa.me/2347026126265"
                             target="_blank"
                             rel="noopener noreferrer"
                             style={{

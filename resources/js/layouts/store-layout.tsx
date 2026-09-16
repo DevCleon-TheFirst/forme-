@@ -65,7 +65,6 @@ export default function StoreLayout({ children }: StoreLayoutProps) {
         { label: 'Men', href: '/shop?gender=male' },
         { label: 'Kids', href: '/shop?gender=kids' },
         { label: 'Launch 001', href: '/collections/new-arrivals' },
-        { label: 'Dresses', href: '/collections/dresses' },
         { label: 'Sets', href: '/collections/sets' },
         { label: 'Accessories', href: '/collections/accessories' },
         { label: 'About Us', href: '/about' },
@@ -207,41 +206,41 @@ export default function StoreLayout({ children }: StoreLayoutProps) {
                     <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(160px, 1fr))', gap: '36px', marginBottom: '40px' }}>
                         <div>
                             <img src="/images/forme-logo.png" className="brand-logo-img" alt="Formé" style={{ height: '80px', width: 'auto', objectFit: 'contain', marginBottom: '16px', display: 'block' }} />
-                            <p style={{ fontSize: '14px', color: C.text, fontWeight: 500, lineHeight: '1.8' }}>Beautifully crafted activewear for every form of movement. Made with love in Lagos, Nigeria.</p>
+                            <p style={{ fontSize: '14px', color: C.text, fontWeight: 400, lineHeight: '1.8', opacity: 0.9 }}>Beautifully crafted activewear for every form of movement. Made with love in Lagos, Nigeria.</p>
                         </div>
                         <div>
-                            <p style={{ fontSize: '11px', letterSpacing: '2.5px', textTransform: 'uppercase', marginBottom: '20px', color: C.accentLight || C.accent, fontWeight: 700 }}>Shop</p>
+                            <p style={{ fontSize: '11px', letterSpacing: '2.5px', textTransform: 'uppercase', marginBottom: '20px', color: C.accentLight || C.accent, fontWeight: 600 }}>Shop</p>
                             {nav.map(n => (
-                                <Link key={n.href} href={n.href} style={{ display: 'block', fontSize: '14px', color: C.text, fontWeight: 500, textDecoration: 'none', marginBottom: '12px', transition: 'opacity .2s' }}
+                                <Link key={n.href} href={n.href} style={{ display: 'block', fontSize: '14px', color: C.text, fontWeight: 400, textDecoration: 'none', marginBottom: '12px', transition: 'opacity .2s' }}
                                     onMouseEnter={e => (e.currentTarget.style.opacity = '0.7')} onMouseLeave={e => (e.currentTarget.style.opacity = '1')}>{n.label}</Link>
                             ))}
                         </div>
                         <div>
-                            <p style={{ fontSize: '11px', letterSpacing: '2.5px', textTransform: 'uppercase', marginBottom: '20px', color: C.accentLight || C.accent, fontWeight: 700 }}>Help &amp; Brand</p>
+                            <p style={{ fontSize: '11px', letterSpacing: '2.5px', textTransform: 'uppercase', marginBottom: '20px', color: C.accentLight || C.accent, fontWeight: 600 }}>Help &amp; Brand</p>
                             <Link
                                 href="/about"
-                                style={{ display: 'block', fontSize: '14px', color: C.text, fontWeight: 500, textDecoration: 'none', marginBottom: '12px', transition: 'opacity .2s' }}
+                                style={{ display: 'block', fontSize: '14px', color: C.text, fontWeight: 400, textDecoration: 'none', marginBottom: '12px', transition: 'opacity .2s' }}
                                 onMouseEnter={e => (e.currentTarget.style.opacity = '0.7')}
                                 onMouseLeave={e => (e.currentTarget.style.opacity = '1')}
                             >About Formé</Link>
                             {['FAQ', 'Size Guide', 'Contact Us'].map(t => (
-                                <p key={t} style={{ fontSize: '14px', color: C.text, fontWeight: 500, marginBottom: '12px', cursor: 'pointer', transition: 'opacity .2s' }}
+                                <p key={t} style={{ fontSize: '14px', color: C.text, fontWeight: 400, marginBottom: '12px', cursor: 'pointer', transition: 'opacity .2s' }}
                                     onMouseEnter={e => (e.currentTarget.style.opacity = '0.7')} onMouseLeave={e => (e.currentTarget.style.opacity = '1')}>{t}</p>
                             ))}
                             <Link
                                 href="/policy"
-                                style={{ display: 'block', fontSize: '14px', color: C.text, fontWeight: 500, textDecoration: 'none', marginBottom: '12px', transition: 'opacity .2s' }}
+                                style={{ display: 'block', fontSize: '14px', color: C.text, fontWeight: 400, textDecoration: 'none', marginBottom: '12px', transition: 'opacity .2s' }}
                                 onMouseEnter={e => (e.currentTarget.style.opacity = '0.7')}
                                 onMouseLeave={e => (e.currentTarget.style.opacity = '1')}
                             >Shipping &amp; Returns</Link>
                         </div>
                         <div>
-                            <p style={{ fontSize: '11px', letterSpacing: '2.5px', textTransform: 'uppercase', marginBottom: '20px', color: C.accentLight || C.accent, fontWeight: 700 }}>Connect</p>
-                            <p style={{ fontSize: '14px', color: C.text, fontWeight: 500, marginBottom: '8px' }}>hello@forme.ng</p>
-                            <p style={{ fontSize: '14px', color: C.text, fontWeight: 500, marginBottom: '16px' }}>WhatsApp: +234 708 470 4785</p>
+                            <p style={{ fontSize: '11px', letterSpacing: '2.5px', textTransform: 'uppercase', marginBottom: '20px', color: C.accentLight || C.accent, fontWeight: 600 }}>Connect</p>
+                            <p style={{ fontSize: '14px', color: C.text, fontWeight: 400, marginBottom: '8px' }}>hello@forme.ng</p>
+                            <p style={{ fontSize: '14px', color: C.text, fontWeight: 400, marginBottom: '16px' }}>WhatsApp: 07026126265</p>
                             <div style={{ display: 'flex', gap: '10px' }}>
                                 {['IG', 'TT', 'FB'].map(s => (
-                                    <div key={s} style={{ width: '38px', height: '38px', borderRadius: '50%', border: `1px solid ${C.accent}`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '11px', fontWeight: 600, color: C.text, cursor: 'pointer', transition: 'all .2s' }}
+                                    <div key={s} style={{ width: '38px', height: '38px', borderRadius: '50%', border: `1px solid ${C.accent}`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '11px', fontWeight: 500, color: C.text, cursor: 'pointer', transition: 'all .2s' }}
                                         onMouseEnter={e => { e.currentTarget.style.borderColor = C.text; e.currentTarget.style.background = C.accent; }}
                                         onMouseLeave={e => { e.currentTarget.style.borderColor = C.accent; e.currentTarget.style.background = 'transparent'; }}>{s}</div>
                                 ))}
@@ -249,15 +248,15 @@ export default function StoreLayout({ children }: StoreLayoutProps) {
                         </div>
                     </div>
                     <div style={{ borderTop: `1px solid ${C.border}`, paddingTop: '24px', display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap', gap: '12px' }}>
-                        <p style={{ fontSize: '13px', color: C.text, fontWeight: 500 }}>© {new Date().getFullYear()} Forme. All rights reserved.</p>
+                        <p style={{ fontSize: '13px', color: C.text, fontWeight: 400, opacity: 0.8 }}>© {new Date().getFullYear()} Forme. All rights reserved.</p>
                         <div style={{ display: 'flex', gap: '12px' }}>
-                            <Link href="/policy" style={{ fontSize: '13px', color: C.text, fontWeight: 500, textDecoration: 'none', transition: 'opacity .2s' }}
-                                onMouseEnter={e => (e.currentTarget.style.opacity = '0.7')}
-                                onMouseLeave={e => (e.currentTarget.style.opacity = '1')}>Privacy Policy</Link>
-                            <span style={{ fontSize: '13px', color: C.text }}>·</span>
-                            <Link href="/policy" style={{ fontSize: '13px', color: C.text, fontWeight: 500, textDecoration: 'none', transition: 'opacity .2s' }}
-                                onMouseEnter={e => (e.currentTarget.style.opacity = '0.7')}
-                                onMouseLeave={e => (e.currentTarget.style.opacity = '1')}>Terms of Service</Link>
+                            <Link href="/policy" style={{ fontSize: '13px', color: C.text, fontWeight: 400, opacity: 0.8, textDecoration: 'none', transition: 'opacity .2s' }}
+                                onMouseEnter={e => (e.currentTarget.style.opacity = '1')}
+                                onMouseLeave={e => (e.currentTarget.style.opacity = '0.8')}>Privacy Policy</Link>
+                            <span style={{ fontSize: '13px', color: C.text, opacity: 0.6 }}>·</span>
+                            <Link href="/policy" style={{ fontSize: '13px', color: C.text, fontWeight: 400, opacity: 0.8, textDecoration: 'none', transition: 'opacity .2s' }}
+                                onMouseEnter={e => (e.currentTarget.style.opacity = '1')}
+                                onMouseLeave={e => (e.currentTarget.style.opacity = '0.8')}>Terms of Service</Link>
                         </div>
                     </div>
                 </div>

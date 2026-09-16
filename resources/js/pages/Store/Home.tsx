@@ -59,9 +59,6 @@ function ProductCard({ product }: { product: Product }) {
                         <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=600&q=80" alt={product.name}
                             style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.6s ease', transform: hovered ? 'scale(1.05)' : 'scale(1)' }} />
                     )}
-                    {product.compare_price && (
-                        <span style={{ position: 'absolute', top: '12px', left: '12px', background: C.accent, color: '#fff', fontSize: '9px', letterSpacing: '1.5px', padding: '4px 9px', fontWeight: 600 }}>SALE</span>
-                    )}
                     {/* Quick Add */}
                     <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, padding: '14px 16px', background: 'linear-gradient(to top, var(--forme-overlay-heavy), transparent)', transform: hovered ? 'translateY(0)' : 'translateY(100%)', transition: 'transform 0.3s ease' }}>
                         <button onClick={handleQuickAdd}
@@ -364,22 +361,22 @@ export default function Home({ featuredProducts, categories, newArrivals, heroSl
                 <div style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', pointerEvents: 'none' }}>
                     <span style={{ fontFamily: "'Syne', sans-serif", fontSize: 'clamp(120px,20vw,280px)', fontWeight: 800, color: 'var(--forme-text-border)', opacity: 0.3, userSelect: 'none', letterSpacing: '12px' }}>FORME</span>
                 </div>
-                <ScrollReveal style={{ position: 'relative', maxWidth: '840px', margin: '0 auto' }}>
-                    <p style={{ fontSize: '12px', letterSpacing: '4px', textTransform: 'uppercase', color: C.accentLight || C.accent, marginBottom: '20px', fontWeight: 800 }}>OUR PHILOSOPHY</p>
-                    <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: 'clamp(36px,5vw,60px)', fontWeight: 600, color: C.text, lineHeight: 1.2, marginBottom: '18px' }}>
+                <ScrollReveal style={{ position: 'relative', maxWidth: '800px', margin: '0 auto' }}>
+                    <p style={{ fontSize: '11px', letterSpacing: '4px', textTransform: 'uppercase', color: C.accentLight || C.accent, marginBottom: '20px', fontWeight: 600 }}>OUR PHILOSOPHY</p>
+                    <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: 'clamp(32px,4.5vw,56px)', fontWeight: 400, color: C.text, lineHeight: 1.25, marginBottom: '18px' }}>
                         Made for every form of movement.
                     </h2>
-                    <p style={{ fontFamily: "'Syne', sans-serif", fontSize: '22px', color: C.accentLight || C.accent, fontWeight: 700, letterSpacing: '3px', textTransform: 'uppercase', marginBottom: '28px' }}>
+                    <p style={{ fontFamily: "'Syne', sans-serif", fontSize: '18px', color: C.accentLight || C.accent, fontWeight: 600, letterSpacing: '2.5px', textTransform: 'uppercase', marginBottom: '24px' }}>
                         MOVE. PERFORM. LIVE. 🌿
                     </p>
-                    <p style={{ fontSize: '18px', color: C.text, lineHeight: '1.8', marginBottom: '40px', maxWidth: '720px', margin: '0 auto 40px', fontWeight: 500 }}>
+                    <p style={{ fontSize: '16px', color: C.text, lineHeight: '1.85', marginBottom: '40px', maxWidth: '680px', margin: '0 auto 40px', fontWeight: 400, opacity: 0.95 }}>
                         Movement is part of taking care of ourselves. We created FORMÉ to bridge beautiful design, quality, function, inclusivity, and attainable pricing — because affordable should never mean forgettable.
                     </p>
                     <div style={{ display: 'flex', gap: '16px', justifyContent: 'center', flexWrap: 'wrap' }}>
-                        <Link href="/about" className="shimmer-button" style={{ background: C.accent, color: '#fff', padding: '18px 40px', textDecoration: 'none', fontSize: '12px', letterSpacing: '2.5px', textTransform: 'uppercase', display: 'inline-block', fontWeight: 700, borderRadius: '2px', transition: 'all .3s' }}>
+                        <Link href="/about" className="shimmer-button" style={{ background: C.accent, color: '#fff', padding: '16px 36px', textDecoration: 'none', fontSize: '11px', letterSpacing: '2px', textTransform: 'uppercase', display: 'inline-block', fontWeight: 500, borderRadius: '2px', transition: 'all .3s' }}>
                             Discover Our Story
                         </Link>
-                        <Link href="/shop" style={{ border: `2px solid ${C.text}`, color: C.text, padding: '18px 40px', textDecoration: 'none', fontSize: '12px', letterSpacing: '2.5px', textTransform: 'uppercase', display: 'inline-block', fontWeight: 700, borderRadius: '2px', transition: 'all .3s' }}
+                        <Link href="/shop" style={{ border: `1px solid ${C.text}`, color: C.text, padding: '16px 36px', textDecoration: 'none', fontSize: '11px', letterSpacing: '2px', textTransform: 'uppercase', display: 'inline-block', fontWeight: 500, borderRadius: '2px', transition: 'all .3s' }}
                             onMouseEnter={e => { e.currentTarget.style.borderColor = C.accent; e.currentTarget.style.color = C.accent; }}
                             onMouseLeave={e => { e.currentTarget.style.borderColor = C.text; e.currentTarget.style.color = C.text; }}>
                             Shop Collection
