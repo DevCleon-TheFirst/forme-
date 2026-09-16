@@ -189,14 +189,19 @@ export default function Home({ featuredProducts, categories, newArrivals, heroSl
                     <p style={{ fontSize: '10px', letterSpacing: '4px', textTransform: 'uppercase', color: C.accent, marginBottom: '24px', opacity: heroVisible ? 1 : 0, transform: heroVisible ? 'translateY(0)' : 'translateY(12px)', transition: 'all 0.7s ease 0.1s' }}>
                         Lagos · {new Date().getFullYear()} Collection
                     </p>
-                    <h1 style={{ fontFamily: "'Playfair Display', serif", fontSize: 'clamp(38px,5.5vw,96px)', fontWeight: 400, color: C.text, lineHeight: 1.05, marginBottom: '16px', opacity: heroVisible ? 1 : 0, transform: heroVisible ? 'translateY(0)' : 'translateY(20px)', transition: 'all 0.8s ease 0.2s' }}>
-                        Dressed<br />
-                        <em style={{ color: C.accent }}>to feel</em><br />
-                        yourself.
+                    <h1 style={{ fontFamily: "'Playfair Display', serif", fontSize: 'clamp(36px,4.5vw,78px)', fontWeight: 400, color: C.text, lineHeight: 1.1, marginBottom: '20px', opacity: heroVisible ? 1 : 0, transform: heroVisible ? 'translateY(0)' : 'translateY(20px)', transition: 'all 0.8s ease 0.2s' }}>
+                        Made for<br />
+                        <em style={{ color: C.accent }}>every form of</em><br />
+                        movement.
                     </h1>
-                    <p style={{ fontSize: '14px', color: C.muted, lineHeight: '1.9', maxWidth: '380px', marginBottom: '32px', opacity: heroVisible ? 1 : 0, transition: 'all 0.8s ease 0.4s' }}>
-                        Forme creates beautifully considered pieces for the modern African — where contemporary silhouettes meet rich heritage.
-                    </p>
+                    <div style={{ maxWidth: '420px', marginBottom: '32px', opacity: heroVisible ? 1 : 0, transition: 'all 0.8s ease 0.4s' }}>
+                        <p style={{ fontSize: '15px', color: C.text, lineHeight: '1.8', fontWeight: 500, marginBottom: '12px' }}>
+                            Elevated, functional activewear at attainable prices. Designed for training, sport, travel and everyday life.
+                        </p>
+                        <p style={{ fontSize: '14px', color: C.accentLight || C.accent, fontWeight: 700, letterSpacing: '1px' }}>
+                            Move. Perform. Live. In your own form.
+                        </p>
+                    </div>
                     <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', opacity: heroVisible ? 1 : 0, transition: 'all 0.8s ease 0.55s' }}>
                         <Link href="/shop" className="shimmer-button" style={{ background: C.accent, color: '#fff', padding: '14px 32px', textDecoration: 'none', fontSize: '11px', letterSpacing: '2.5px', textTransform: 'uppercase', fontWeight: 500, display: 'inline-block', transition: 'background .3s' }}
                             onMouseEnter={e => (e.currentTarget.style.background = '#B86878')}
