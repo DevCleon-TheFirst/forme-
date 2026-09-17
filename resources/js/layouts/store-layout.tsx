@@ -64,7 +64,7 @@ export default function StoreLayout({ children }: StoreLayoutProps) {
         { label: 'Women', href: '/shop?gender=female' },
         { label: 'Men', href: '/shop?gender=male' },
         { label: 'Kids', href: '/shop?gender=kids' },
-        { label: 'Launch 001', href: '/collections/new-arrivals' },
+        { label: 'Debut Collection', href: '/collections/new-arrivals' },
         { label: 'Sets', href: '/collections/sets' },
         { label: 'Accessories', href: '/collections/accessories' },
         { label: 'About Us', href: '/about' },
@@ -206,7 +206,7 @@ export default function StoreLayout({ children }: StoreLayoutProps) {
                     <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(160px, 1fr))', gap: '36px', marginBottom: '40px' }}>
                         <div>
                             <img src="/images/forme-logo.png" className="brand-logo-img" alt="Formé" style={{ height: '80px', width: 'auto', objectFit: 'contain', marginBottom: '16px', display: 'block' }} />
-                            <p style={{ fontSize: '14px', color: C.text, fontWeight: 400, lineHeight: '1.8', opacity: 0.9 }}>Beautifully crafted activewear for every form of movement. Made with love in Lagos, Nigeria.</p>
+                            <p style={{ fontSize: '14px', color: C.text, fontWeight: 400, lineHeight: '1.8', opacity: 0.9 }}>Beautifully crafted activewear for every form of movement.</p>
                         </div>
                         <div>
                             <p style={{ fontSize: '11px', letterSpacing: '2.5px', textTransform: 'uppercase', marginBottom: '20px', color: C.accentLight || C.accent, fontWeight: 600 }}>Shop</p>
