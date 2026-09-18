@@ -68,6 +68,11 @@ class StoreController extends Controller
         return Inertia::render('Store/About');
     }
 
+    public function connect(): Response
+    {
+        return Inertia::render('Store/Connect');
+    }
+
     public function collection(?string $slug = null): Response
     {
         $query = Product::with(['images', 'category', 'variants'])

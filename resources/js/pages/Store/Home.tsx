@@ -333,7 +333,8 @@ export default function Home({ featuredProducts, categories, newArrivals, heroSl
                 </section>
             )}
 
-            {/* ── Featured Products ── */}
+            {/* ── Featured Products (Temporarily Hidden) ── */}
+            {/*
             {featuredProducts.length > 0 && (
                 <section style={{ background: C.surface, padding: '96px 24px' }}>
                     <div style={{ maxWidth: '1400px', margin: '0 auto' }}>
@@ -356,6 +357,7 @@ export default function Home({ featuredProducts, categories, newArrivals, heroSl
                     </div>
                 </section>
             )}
+            */}
 
             {/* ── Brand Story ── */}
             <section style={{ padding: '120px 24px', background: C.bg, textAlign: 'center', position: 'relative', overflow: 'hidden' }}>
